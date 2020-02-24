@@ -6,10 +6,9 @@ from ctypes import *
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 import win32ui, win32gui, win32con, win32ts
+import LinkHeader as hd
 
 WM_WTSSESSION_CHANGE = 0x2B1
-
-WM_EU_RQRP_RECV = 7419
 
 form_class = uic.loadUiType("C:\\EugeneFN\\NewChampionLink\\main_window.ui")[0]
 
@@ -28,7 +27,7 @@ class MyWindow(QMainWindow, form_class):
         def MyWndProc(hWnd, msg, wParam, lParam):
             if msg == WM_WTSSESSION_CHANGE:
                 print("msg change")
-            elif msg == WM_EU_RQRP_RECV:
+            elif msg == hd.WM_EU_RQRP_RECV:
                 self.OnReceive()
             elif msg == win32con.WM_DESTROY:
                 win32gui.DestroyWindow(app_hwnd)
@@ -118,13 +117,13 @@ class MyWindow(QMainWindow, form_class):
         self.textBrowser.append(msg)
         '''
 
-        #err = OpCommAPI_UnInitialize()
-        #print(err)
+        # err = OpCommAPI_UnInitialize()
+        # print(err)
 
     def ButtonClick_2(self):
         self.textBrowser.append("PostMessage")
         window_handle = win32ui.FindWindow(None, u"MainWindow").GetSafeHwnd()
-        #win32gui.PostMessage(window_handle, WM_EU_RQRP_RECV, 0, 0)
+        # win32gui.PostMessage(window_handle, WM_EU_RQRP_RECV, 0, 0)
 
     def OnReceive(self):
         dcnt = self.OpCommAPI_GetRqrpCount(self.result_753, 1)
