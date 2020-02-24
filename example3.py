@@ -1,56 +1,58 @@
 import sys
-import time
-import ctypes
-from ctypes import *
-from ctypes.wintypes import *
-from PyQt5.QtWidgets import *
-from PyQt5 import uic
-from win32 import win32gui
-import win32gui,win32con
-import win32ui
-import win32api
-import win32process
-from ctypes.wintypes import HWND
 
+from PyQt5.QtWidgets import *
+import win32api
+import win32con
+import win32gui
+import win32ts
+
+WM_WTSSESSION_CHANGE = 0x2B1
+WTS_SESSION_LOCK = 0x7
+WTS_SESSION_UNLOCK = 0x8
 
 form_class = uic.loadUiType("C:\\EugeneFN\\NewChampionLink\\main_window.ui")[0]
 
-class MyWindow(QMainWindow, form_class):
+class WndProcHookMixin:
     def __init__(self):
-        super().__init__()
-        self.setupUi(self)
-        time.sleep(1)
-        #title = win32gui.GetWindowText(hwnd)
-        hwnd = win32gui.GetForegroundWindow()
-        print('1 :', hwnd)
+        self.msgDict = {}
+
+    def hookWndProc(self):
+        self.oldWndProc = win32gui.SetWindowLong(self.winId(), win32con.GWL_WNDPROC, self.localWndProc)
+
+    def unhookWndProc(self):
+        win32api.SetWindowLong(self.winId(), win32con.GWL_WNDPROC, self.oldWndProc)
+
+    def addMsgHandler(self, messageNumber, handler):
+        self.msgDict[messageNumber] = handler
+
+    def localWndProc(self, hWnd, msg, wParam, lParam):
+        if msg in self.msgDict:
+            if self.msgDict[msg](wParam, lParam) == False:
+                return
+
+        if msg == win32con.WM_DESTROY:
+            self.unhookWndProc()
+
+        return win32gui.CallWindowProc(self.oldWndProc, hWnd, msg, wParam, lParam)
 
 
+class Window(QWidget, form_class, WndProcHookMixin):
+    def __init__(self, *args, **kwargs):
+        QWidget.__init__(self, *args, **kwargs)
+        self.show()
+        win32ts.WTSRegisterSessionNotification(self.winId(), win32ts.NOTIFY_FOR_ALL_SESSIONS)
+        self.addMsgHandler(WM_WTSSESSION_CHANGE, self.on_session)
+        self.hookWndProc()
 
-if __name__ == "__main__":
+    def on_session(self, wParam, lParam):
+        event, session_id = wParam, lParam
+        if event == WTS_SESSION_LOCK:
+            print("Locked")
+        if event == WTS_SESSION_UNLOCK:
+            print("Unlocked")
+
+
+if __name__ == '__main__':
     app = QApplication(sys.argv)
-    myApp = MyWindow()
-    myApp.show()
-
-    hwnd = win32gui.GetForegroundWindow()
-    print('11 :', hwnd)
-
-    l = win32ui.FindWindow(None, u"MainWindow")
-    window_handle = l.GetSafeHwnd()
-    print('22 :', window_handle)
-
-    window_handle = win32ui.FindWindow(None, "MainWindow").GetSafeHwnd()
-    print('33 :', window_handle)
-
-    window_handle = win32gui.GetForegroundWindow()
-    print('44 :', window_handle)
-
-    #window_handle5 = POINTER(HANDLE())
-    window_handle = win32gui.GetForegroundWindow()
-    print('55 :', window_handle)
-
-    window_handle = win32ui.GetMainFrame().GetSafeHwnd()
-    print('66 :', window_handle)
-
-
-    app.exec_()
-
+    win = Window()
+    sys.exit(app.exec_())
