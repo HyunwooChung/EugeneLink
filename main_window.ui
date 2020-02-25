@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>521</width>
-    <height>381</height>
+    <width>517</width>
+    <height>520</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,17 +31,17 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
+      <y>37</y>
       <width>501</width>
-      <height>61</height>
+      <height>90</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>187</x>
-      <y>12</y>
+      <x>435</x>
+      <y>134</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -55,7 +55,7 @@
      <rect>
       <x>88</x>
       <y>13</y>
-      <width>91</width>
+      <width>60</width>
       <height>20</height>
      </rect>
     </property>
@@ -67,9 +67,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>120</y>
+      <y>160</y>
       <width>501</width>
-      <height>192</height>
+      <height>181</height>
      </rect>
     </property>
     <property name="rowCount">
@@ -109,13 +109,113 @@
      </property>
     </column>
    </widget>
+   <widget class="QTextBrowser" name="textBrowser_2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>13</y>
+      <width>256</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhMultiLine</set>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="openLinks">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>349</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>시세 조회</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>17</x>
+      <y>140</y>
+      <width>56</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>계좌번호</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>168</x>
+      <y>140</y>
+      <width>56</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>비밀번호</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>69</x>
+      <y>136</y>
+      <width>90</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="maxLength">
+     <number>11</number>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>136</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="maxLength">
+     <number>4</number>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="textBrowser_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>380</y>
+      <width>256</width>
+      <height>81</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>521</width>
+     <width>517</width>
      <height>21</height>
     </rect>
    </property>
