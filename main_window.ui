@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>517</width>
-    <height>520</height>
+    <height>536</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -112,9 +112,9 @@
    <widget class="QTextBrowser" name="textBrowser_2">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>342</x>
       <y>13</y>
-      <width>256</width>
+      <width>150</width>
       <height>20</height>
      </rect>
     </property>
@@ -138,7 +138,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>349</y>
+      <y>350</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -203,10 +203,61 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>380</y>
-      <width>256</width>
-      <height>81</height>
+      <y>376</y>
+      <width>380</width>
+      <height>100</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="textBrowser_4">
+    <property name="geometry">
+     <rect>
+      <x>207</x>
+      <y>13</y>
+      <width>90</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhMultiLine</set>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="openLinks">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>156</x>
+      <y>18</y>
+      <width>50</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>표준코드</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>303</x>
+      <y>18</y>
+      <width>40</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>종목명</string>
     </property>
    </widget>
   </widget>

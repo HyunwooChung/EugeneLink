@@ -25,6 +25,7 @@ class MyWindow(QMainWindow, form_class):
         self.session_events(self.winId())
         self.load_lib()
 
+
     def session_events(self, app_hwnd):
         win32ts.WTSRegisterSessionNotification(app_hwnd, win32ts.NOTIFY_FOR_THIS_SESSION)
         #win32ts.WTSRegisterSessionNotification(app_hwnd, win32ts.NOTIFY_FOR_ALL_SESSIONS)
@@ -107,7 +108,6 @@ class MyWindow(QMainWindow, form_class):
         self.OpCommAPI_GetRealData = self.OpCommAPI.OpCommAPI_GetRealData
         self.OpCommAPI_GetRealData.restype = c_char_p
         self.OpCommAPI_GetRealData.argtypes = [c_byte, c_int]
-
 
         # 종목코드 관련 데이터
         self.OpCodeAPI_GetExpCode = self.OpCodeAPI.OpCodeAPI_GetExpCode
