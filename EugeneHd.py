@@ -25,6 +25,11 @@ WM_EU_RQRP_ERR_RECV	 = 7420 #WM_USER+6396
 # sNotiMsg   : 공지사항 메세지(NOTI_SERVER_NOTIFY 일때만 유효한 값)
 WM_EU_NOTI_RECV	     = 7421 #WM_USER+6397
 
+# WM_EU_NOTI_RECV Notify Value
+NOTI_MULTICONNECT_DENIED   =  50      # 다중접속에 의한 접속 해제
+NOTI_SOCKET_CLOSED         =  51      # 통신 단절
+NOTI_SERVER_NOTIFY         = 100      # 서버에서 내려온 긴급 메세지.
+
 # OpCommAPI_SendRq return Value
 SENDRQ_NOT_INITIALIZE      = -99      # Initialize 하지 않음.
 SENDRQ_INVALID_RQRPID      = -21      # 존재하지 않는 RQRPID
@@ -46,3 +51,11 @@ SENDRQ_LOGIN_FAIL          =  -8      # 승인처리 실패
 SENDRQ_SENDLEN_OVER        =  -9      # 데이터 전문길이 초과
 SENDRQ_ERROR_NOTCOMPLETE   = -16      # 데이터 조회중 오류
 SENDRQ_CERT_NOTCOMPLETE    = -17      # 인증서 오류
+
+# OpCommAPI_RequestReal return Value
+SETREAL_NOT_INITIALIZE     = -99      # Initialize 하지 않음
+SETREAL_INVALID_USERID     =  -1      # 주문체결통보 설정시 본인 ID가 아님
+
+
+REAL_TRAN_PRC =   1                   # 주식 종목 우선호가
+REAL_TRAN_TRD =  21                   # 주식 종목 체결시세

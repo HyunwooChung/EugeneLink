@@ -6,7 +6,7 @@ from PyQt5 import uic
 from EugeneHd  import *
 from EugeneLib import *
 from EugeneOrd import *
-from EugeneCtl import *
+from EugeneRealPrc import *
 
 ui = uic.loadUiType("C:\\EugeneFN\\NewChampionLink\\EugeneWindow.ui")[0]
 
@@ -15,32 +15,47 @@ class MyWindow(QMainWindow, ui):
         super().__init__()
         self.setupUi(self)
 
-        self.CCtl = EugeneCtl()
+        # 유진 Library Load
+        EugeneLib()
 
-        self.Clib = EugeneLib()
-        self.Clib.LoadLib()
+        # 실시간 시세 클래스 선언
+        self.CRealPrc = EugeneRealPrc(self)
 
+        # 윈도우 이벤트 수신처리
         self.WindowEvent(self.winId())
+
+        # 윈도우 컨트롤 셋팅
         self.SetControl()
 
-        iErr = self.Clib.OpCommAPI_Initialize(self.winId())
+        # 윈도우핸들러
+        # 유진 Library 호출시 필요
+        self.Hwnd = win32ui.FindWindow(None, "MainWindow").GetSafeHwnd()
+        sMsg = "윈도우핸들러 : " + str(self.Hwnd)
+        self.TxtBrLog.append(sMsg)
+
+        iErr = EugeneLib.OpCommAPI_Initialize(self.Hwnd)
 
         if iErr == 0:
-            self.TxtBrLog.append('Initialize : 서버접속 성공')
-        else:
             self.TxtBrLog.append('Initialize : 서버접속 실패')
+        else:
+            self.TxtBrLog.append('Initialize : 서버접속 성공')
 
-    # 컨트롤 셋팅
+        self.EditCode.setText("005930")
+        self.EditAcno.setText("27122016751")
+        self.EditPswd.setText("1357")
+
+    # 윈도우 컨트롤 셋팅
     def SetControl(self):
-        self.BtnJango.clicked.connect(self.CCtl.BtnJangoClick)
-        self.BtnSise.clicked.connect(self.CCtl.BtnSiseClick)
-        self.BtnBuy.clicked.connect(self.CCtl.BtnBuyClick)
-        self.BtnSell.clicked.connect(self.CCtl.BtnSellClick)
-        self.BtnMdfy.clicked.connect(self.CCtl.BtnMdfyClick)
-        self.BtnCncl.clicked.connect(self.CCtl.BtnCnclClick)
+        self.BtnPstn.clicked.connect(self.BtnPstnClick)
+        self.BtnPrc.clicked.connect(self.BtnPrcClick)
+        self.BtnBuy.clicked.connect(self.BtnBuyClick)
+        self.BtnSell.clicked.connect(self.BtnSellClick)
+        self.BtnMdfy.clicked.connect(self.BtnMdfyClick)
+        self.BtnCncl.clicked.connect(self.BtnCnclClick)
+        self.EditCode.textChanged.connect(self.EditCodeChanged)
 
-    # 유진 API에서 송신하는 윈도우 이벤트 수신처리
-    # pyqt5 사용시 일반적으로 윈도우 이벤트 수신처리 방법을 모르겠음
+    # 유진 API 윈도우 이벤트 수신처리
+    # PyQt 사용시 일반적인 윈도우 이벤트 수신처리 방법을 모르겠음
     # 해당방법으로 정상 작동은 함
     def WindowEvent(self, app_hwnd):
         win32ts.WTSRegisterSessionNotification(app_hwnd, win32ts.NOTIFY_FOR_THIS_SESSION)
@@ -48,11 +63,19 @@ class MyWindow(QMainWindow, ui):
 
         def WindowProc(hWnd, msg, wParam, lParam):
             if msg == WM_EU_REAL_RECV:
-                self.OnRealRecv(wParam, lParam)
+                # 실시간 주식 우선호가 수신처리
+                if wParam == REAL_TRAN_PRC:
+                    self.CRealPrc.RecvRealPrc(wParam, lParam)
+                # 실시간 주식 체결시세 수신처리
+                elif wParam == REAL_TRAN_TRD:
+                    self.CRealPrc.RecvRealTrd(wParam, lParam)
+
             elif msg == WM_EU_RQRP_RECV:
-                self.OnRqrpRecv(wParam, lParam)
+                pass
+
+
             elif msg == win32con.WM_DESTROY:
-                iErr = self.Clib.OpCommAPI_UnInitialize()
+                iErr = EugeneLib.OpCommAPI_UnInitialize()
                 if iErr == 0:
                     self.TxtBrLog.append('UnInitialize : 종료실패')
                 else:
@@ -69,56 +92,46 @@ class MyWindow(QMainWindow, ui):
         self.old_win32_proc = win32gui.SetWindowLong(app_hwnd, win32con.GWL_WNDPROC, WindowProc)
 
 
-    def OnRqrpRecv(self, wParam, lParam):
-        dcnt = self.OpCommAPI_GetRqrpCount(self.result_753, 1)
-        msg = "조회건수 : " + str(dcnt)
-        self.TxtBrLog.append(msg)
-        for i in range(dcnt):
-            value = self.OpCommAPI_GetRqrpData(self.result_753, 1, i, 0)
-            value = value.decode("cp949")
-            self.tableWidget.setItem(i, 0, QTableWidgetItem(str(value)))
+    # 실시간시세 버튼 클릭
+    def BtnPrcClick(self):
+        self.CRealPrc.ReqRealPrc()
 
-            value = self.OpCommAPI_GetRqrpData(self.result_753, 1, i, 2)
-            value = value.decode("cp949")
-            self.tableWidget.setItem(i, 1, QTableWidgetItem(str(value)))
+    # 잔고조회 버튼 클릭
+    def BtnPstnClick(self):
+        pass
 
-            value = self.OpCommAPI_GetRqrpData(self.result_753, 1, i, 3)
-            value = value.decode("cp949")
-            self.tableWidget.setItem(i, 2, QTableWidgetItem(str(value)))
+    # 매수주문 버튼 클릭
+    def BtnBuyClick(self):
+        pass
 
-            value = self.OpCommAPI_GetRqrpData(self.result_753, 1, i, 6)
-            value = value.decode("cp949")
-            self.tableWidget.setItem(i, 3, QTableWidgetItem(str(value)))
+    # 매도주문 버튼 클릭
+    def BtnSellClick(self):
+        pass
 
-        self.OpCommAPI_ClearRQData()
+    # 정정주문 버튼 클릭
+    def BtnMdfyClick(self):
+        pass
 
-    def OnRealRecv(self, wParam, lParam):
+    # 취소주문 버튼 클릭
+    def BtnCnclClick(self):
+        pass
 
-        if wParam == 21:
-            value = self.OpCommAPI_GetRealData(wParam, 0)  # 종목코드
-            value = value.decode("cp949")
-            sSise = value
+    def EditCodeChanged(self):
+        sCode = self.EditCode.text()
+        # 종목코드를 6자리 입력한 경우 종목명 조회
+        if len(sCode) == 6:
+            sCode = sCode.encode()
+            sCodeNM = EugeneLib.OpCodeAPI_GetNameByCode(sCode)
+            sCodeNM = sCodeNM.decode("cp949")
+            self.TxtBrNm.setText(sCodeNM)
+        else:
+            self.TxtBrNm.setText("")
 
-            value = self.OpCommAPI_GetRealData(wParam, 1)  # 체결시간
-            value = value.decode("cp949")
-            sSise = sSise + ' | ' + value
-
-            value = self.OpCommAPI_GetRealData(wParam, 4)  # 체결가
-            value = value.decode("cp949")
-            sSise = sSise + ' | ' + value
-
-            value = self.OpCommAPI_GetRealData(wParam, 12)  # 매도호가
-            value = value.decode("cp949")
-            sSise = sSise + ' | ' + value
-
-            value = self.OpCommAPI_GetRealData(wParam, 13)  # 매수호가
-            value = value.decode("cp949")
-            sSise = sSise + ' | ' + value
-
-            self.TxtBrLog.append(sSise)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     myApp = MyWindow()
     myApp.show()
     app.exec_()
+
+

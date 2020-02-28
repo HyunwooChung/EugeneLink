@@ -34,7 +34,7 @@ class MyWindow(QMainWindow, form_class):
             if msg == WM_WTSSESSION_CHANGE:
                 print("msg change")
             elif msg == hd.WM_EU_REAL_RECV:
-                self.OnRealRecv(wParam, lParam)
+
             elif msg == hd.WM_EU_RQRP_RECV:
                 self.OnRqrpRecv(wParam, lParam)
             elif msg == win32con.WM_DESTROY:
@@ -66,6 +66,9 @@ class MyWindow(QMainWindow, form_class):
         self.OpCommAPI_Initialize = self.OpCommAPI.OpCommAPI_Initialize
         self.OpCommAPI_Initialize.restype = c_bool
         self.OpCommAPI_Initialize.argtypes = [c_int]
+
+        print(type(msg))
+        print(type(self.OpCommAPI_Initialize))
 
         self.OpCommAPI_UnInitialize = self.OpCommAPI.OpCommAPI_UnInitialize
         self.OpCommAPI_UnInitialize.restype = c_bool

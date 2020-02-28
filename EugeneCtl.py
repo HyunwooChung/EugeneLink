@@ -1,20 +1,33 @@
-import EugeneMain
+from EugeneMain import *
 
-class EugeneCtl():
-    def __init__(self):
-        pass
+class EugeneCtl(object):
+    def __init__(self, QMainWindow):
+        self.ui = QMainWindow
 
-        #self.ui = EugeneMain.MyWindow()
-
-    def BtnJangoClick(self):
-        #print('111')
-        #print(self.ui)
-        #self.ui.TxtBrLog.append('Initialize : 연결성공')
-
+    def BtnPstnClick(self):
+        iErr = EugeneLib.OpCommAPI_UnInitialize()
+        print(iErr)
         pass
 
     def BtnSiseClick(self):
-        pass
+        sAccn = '27122016751'
+        sPswd = '1357'
+        sAccn = sAccn.encode()
+        sPswd = sPswd.encode()
+        print('111')
+
+
+        EugeneLib.OpCommAPI_SetRqData(0, sAccn)
+        print('222')
+        EugeneLib.OpCommAPI_SetRqData(1, sPswd)
+        print('333')
+
+        handler = win32ui.FindWindow(None, u"MainWindow").GetSafeHwnd()
+        result_753 = EugeneLib.OpCommAPI_SendRq(handler, 753, 0)
+        print('444')
+
+        msg = 'SendRq 753 : ' + str(result_753)
+        print(msg)
 
     def BtnBuyClick(self):
         pass
