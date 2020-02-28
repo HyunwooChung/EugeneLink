@@ -57,5 +57,7 @@ SETREAL_NOT_INITIALIZE     = -99      # Initialize 하지 않음
 SETREAL_INVALID_USERID     =  -1      # 주문체결통보 설정시 본인 ID가 아님
 
 
-REAL_TRAN_PRC =   1                   # 주식 종목 우선호가
-REAL_TRAN_TRD =  21                   # 주식 종목 체결시세
+REAL_TRAN_PRC   =   1                   # 주식 종목 우선호가
+REAL_TRAN_TRD   =  21                   # 주식 종목 체결시세
+RQRP_TRAN_ORD   = 601                   # 주식 매도/매수 주문
+RQRP_TRAN_MDFY  = 602                   # 주식 정정/취소 주문

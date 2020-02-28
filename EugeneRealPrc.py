@@ -15,7 +15,7 @@ class EugeneRealPrc(object):
         # 표준종목코드로 변환하여 조회
         sStdCode = EugeneLib.OpCodeAPI_GetExpCode(sCode)
 
-        # 주식 우선호가
+        # 주식 우선호가 요청
         iErr = EugeneLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_PRC, sStdCode)
 
         if iErr == 0:
@@ -23,7 +23,7 @@ class EugeneRealPrc(object):
         else:
             self.ui.TxtBrLog.append('Initialize : 서버접속 실패')
 
-        # 주식 체결시세
+        # 주식 체결시세 요청
         iErr = EugeneLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_TRD, sStdCode)
 
         if iErr == 0:
@@ -32,7 +32,7 @@ class EugeneRealPrc(object):
             self.ui.TxtBrLog.append('Initialize : 서버접속 실패')
 
 
-    # 실시간 주식 호가시세 수신처리
+    # 실시간 주식 우선호가 수신처리
     def RecvRealPrc(self, wParam, lParam):
         lstBuy  = []
         lstSell = []

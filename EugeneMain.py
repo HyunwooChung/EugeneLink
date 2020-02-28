@@ -21,6 +21,9 @@ class MyWindow(QMainWindow, ui):
         # 실시간 시세 클래스 선언
         self.CRealPrc = EugeneRealPrc(self)
 
+        # 주문전송 클래스 선언
+        self.COrd = EugeneOrd(self)
+
         # 윈도우 이벤트 수신처리
         self.WindowEvent(self.winId())
 
@@ -102,19 +105,19 @@ class MyWindow(QMainWindow, ui):
 
     # 매수주문 버튼 클릭
     def BtnBuyClick(self):
-        pass
+        self.COrd.SendStkOrd("20")
 
     # 매도주문 버튼 클릭
     def BtnSellClick(self):
-        pass
+        self.COrd.SendStkOrd("10")
 
     # 정정주문 버튼 클릭
     def BtnMdfyClick(self):
-        pass
+        self.COrd.SendStkMdfy("20")
 
     # 취소주문 버튼 클릭
     def BtnCnclClick(self):
-        pass
+        self.COrd.SendStkMdfy("30")
 
     def EditCodeChanged(self):
         sCode = self.EditCode.text()
