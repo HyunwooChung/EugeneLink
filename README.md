@@ -2,9 +2,8 @@
 
 ## 개발환경
 * Anaconda 3 (32bit)
-
-Pycharm 3.7 (32bit)
-
-Pyqt5
+* Pycharm 2018.3.7 (32bit)
+* Pyqt5
 
 ## 파일설명
+* 
