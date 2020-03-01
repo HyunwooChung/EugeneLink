@@ -1,5 +1,6 @@
 from ctypes import *
 
+# 유진 Library Load 모듈
 class EugeneLib(object):
 
     OpCommAPI = windll.LoadLibrary('C:\\EugeneFN\\NewChampionLink\\OpCommAPI.dll')

@@ -6,6 +6,7 @@ from PyQt5 import uic
 from EugeneHd  import *
 from EugeneLib import *
 from EugeneOrd import *
+from EugeneQry import *
 from EugeneRealPrc import *
 
 ui = uic.loadUiType("C:\\EugeneFN\\NewChampionLink\\EugeneWindow.ui")[0]
@@ -24,6 +25,9 @@ class MyWindow(QMainWindow, ui):
         # 주문전송 클래스 선언
         self.COrd = EugeneOrd(self)
 
+        # RQRP 조회 클래스 선언
+        self.CQry = EugeneQry(self)
+
         # 윈도우 이벤트 수신처리
         self.WindowEvent(self.winId())
 
@@ -36,13 +40,14 @@ class MyWindow(QMainWindow, ui):
         sMsg = "윈도우핸들러 : " + str(self.Hwnd)
         self.TxtBrLog.append(sMsg)
 
-        iErr = EugeneLib.OpCommAPI_Initialize(self.Hwnd)
+        iRtn = EugeneLib.OpCommAPI_Initialize(self.Hwnd)
 
-        if iErr == 0:
+        if iRtn == 0:
             self.TxtBrLog.append('Initialize : 서버접속 실패')
         else:
             self.TxtBrLog.append('Initialize : 서버접속 성공')
 
+        # 예제용 입력값
         self.EditCode.setText("005930")
         self.EditAcno.setText("27122016751")
         self.EditPswd.setText("1357")
@@ -66,20 +71,14 @@ class MyWindow(QMainWindow, ui):
 
         def WindowProc(hWnd, msg, wParam, lParam):
             if msg == WM_EU_REAL_RECV:
-                # 실시간 주식 우선호가 수신처리
-                if wParam == REAL_TRAN_PRC:
-                    self.CRealPrc.RecvRealPrc(wParam, lParam)
-                # 실시간 주식 체결시세 수신처리
-                elif wParam == REAL_TRAN_TRD:
-                    self.CRealPrc.RecvRealTrd(wParam, lParam)
-
+                self.RecvReal(wParam, lParam)
             elif msg == WM_EU_RQRP_RECV:
-                pass
-
-
+                self.RecvRqRp(wParam, lParam)
+            elif msg == WM_EU_RQRP_ERR_RECV:
+                self.RecvRqRpErr(wParam, lParam)
             elif msg == win32con.WM_DESTROY:
-                iErr = EugeneLib.OpCommAPI_UnInitialize()
-                if iErr == 0:
+                iRtn = EugeneLib.OpCommAPI_UnInitialize()
+                if iRtn == 0:
                     self.TxtBrLog.append('UnInitialize : 종료실패')
                 else:
                     self.TxtBrLog.append('UnInitialize : 종료성공')
@@ -95,30 +94,54 @@ class MyWindow(QMainWindow, ui):
         self.old_win32_proc = win32gui.SetWindowLong(app_hwnd, win32con.GWL_WNDPROC, WindowProc)
 
 
+    def RecvRaal(self, wParam, lParam):
+        # 실시간 주식 우선호가 수신처리
+        if wParam == REAL_TRAN_STK_PRC:
+            self.CRealPrc.RecvRealPrc(wParam, lParam)
+        # 실시간 주식 체결시세 수신처리
+        elif wParam == REAL_TRAN_STK_TRD:
+            self.CRealPrc.RecvRealTrd(wParam, lParam)
+
+    def RecvRqRp(self, wParam, lParam ):
+        # 주식 매도/매수 주문 응답처리
+        if wParam == RQRP_TRAN_STK_ORD:
+            self.COrd.RecvStkOrd(wParam, lParam, self.iRqRpID)
+        # 주식 정정/취소 주문 응답처리
+        elif wParam == RQRP_TRAN_STK_MDFY:
+            self.COrd.RecvStkMdfy(wParam, lParam, self.iRqRpID)
+        # 주식잔고 조회 응답처리
+        elif wParam == RQRP_TRAN_STK_PSTN:
+            self.CQry.RecvStkPstn(wParam, lParam, self.iRqRpID)
+
+    def RecvRqRpErr(self, wParam, lParam):
+        pass
+
+
     # 실시간시세 버튼 클릭
     def BtnPrcClick(self):
         self.CRealPrc.ReqRealPrc()
 
     # 잔고조회 버튼 클릭
     def BtnPstnClick(self):
-        pass
+        self.iRqRpID = self.CQry.QueryStkPstn()
 
     # 매수주문 버튼 클릭
     def BtnBuyClick(self):
-        self.COrd.SendStkOrd("20")
+        self.iRqRpID = self.COrd.SendStkOrd("20")
 
     # 매도주문 버튼 클릭
     def BtnSellClick(self):
-        self.COrd.SendStkOrd("10")
+        self.iRqRpID = self.COrd.SendStkOrd("10")
 
     # 정정주문 버튼 클릭
     def BtnMdfyClick(self):
-        self.COrd.SendStkMdfy("20")
+        self.iRqRpID = self.COrd.SendStkMdfy("20")
 
     # 취소주문 버튼 클릭
     def BtnCnclClick(self):
-        self.COrd.SendStkMdfy("30")
+        self.iRqRpID = self.COrd.SendStkMdfy("30")
 
+    # 종목코드 입력시
     def EditCodeChanged(self):
         sCode = self.EditCode.text()
         # 종목코드를 6자리 입력한 경우 종목명 조회

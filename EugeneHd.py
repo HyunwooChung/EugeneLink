@@ -31,33 +31,40 @@ NOTI_SOCKET_CLOSED         =  51      # 통신 단절
 NOTI_SERVER_NOTIFY         = 100      # 서버에서 내려온 긴급 메세지.
 
 # OpCommAPI_SendRq return Value
-SENDRQ_NOT_INITIALIZE      = -99      # Initialize 하지 않음.
-SENDRQ_INVALID_RQRPID      = -21      # 존재하지 않는 RQRPID
-SENDRQ_RQDATA_LACK         = -22      # RQ데이터 부족
-SENDRQ_NOT_SUPPORT         = -23      # 지원하는 않는 RQ. Multi Type Input은 지원하지 않음.
-SENDRQ_MEMORY_LACK         = -24      # 메모리 부족
-SENDRQ_INVALID_ACCNO       = -25      # 조회 불가능한 계좌번호
-SENDRQ_SEND_LIMIT          = -26      # 초당 전송 횟수 제한
-SENDRQ_SYNC_RPWAITING      = -27      # 동기식 TR로 전송 제한
-SENDRQ_INVALID_CONKEY      = -28      # 존재하지 않는 연속키값이거나 연속조회가 불가능한 TR
-SENDRQ_ERROR_SOCKET        =  -1      # 소켓송신 에러
-SENDRQ_ERROR_NOTCONNECT    =  -2      # 통신 미연결 상태
-SENDRQ_ERROR_ALLOCMEM      =  -3      # 메모리 에러
-SENDRQ_ERROR_FORMAT        =  -4      # 통신규약 에러
-SENDRQ_ERROR_DOWNLOAD      =  -5      # 다운로드 상태
-SENDRQ_CERT_NOTDEFINE      =  -6      # 인증서 미정의
-SENDRQ_LOGIN_NOTUNSERINFO  =  -7      # 유저정보 없음
-SENDRQ_LOGIN_FAIL          =  -8      # 승인처리 실패
-SENDRQ_SENDLEN_OVER        =  -9      # 데이터 전문길이 초과
-SENDRQ_ERROR_NOTCOMPLETE   = -16      # 데이터 조회중 오류
-SENDRQ_CERT_NOTCOMPLETE    = -17      # 인증서 오류
+DIC_SENDRQ_ERROR = \
+    { -99 :  "Initialize 하지 않음"
+    , -21 :  "존재하지 않는 RQRPID"
+    , -22 :  "RQ데이터 부족"
+    , -23 :  "지원하는 않는 RQ Multi Type Input은 지원하지 않음"
+    , -24 :  "메모리 부족"
+    , -25 :  "조회 불가능한 계좌번호"
+    , -26 :  "초당 전송 횟수 제한"
+    , -27 :  "동기식 TR로 전송 제한"
+    , -28 :  "존재하지 않는 연속키값이거나 연속조회가 불가능한 TR"
+    ,  -1 :  "소켓송신 에러"
+    ,  -2 :  "통신 미연결 상태"
+    ,  -3 :  "메모리 에러"
+    ,  -4 :  "통신규약 에러"
+    ,  -5 :  "다운로드 상태"
+    ,  -6 :  "인증서 미정의"
+    ,  -7 :  "유저정보 없음"
+    ,  -8 :  "승인처리 실패"
+    ,  -9 :  "데이터 전문길이 초과"
+    , -16 :  "데이터 조회중 오류"
+    , -17 :  "인증서 오류" }
+
 
 # OpCommAPI_RequestReal return Value
-SETREAL_NOT_INITIALIZE     = -99      # Initialize 하지 않음
-SETREAL_INVALID_USERID     =  -1      # 주문체결통보 설정시 본인 ID가 아님
+DIC_SETREAL_ERROR = \
+    { -99 :  "Initialize 하지 않음"
+    ,  -1 :  "주문체결통보 설정시 본인 ID가 아님"
+    }
+
+REAL_TRAN_STK_PRC          =   1      # 주식 종목 우선호가
+REAL_TRAN_STK_TRD          =  21      # 주식 종목 체결시세
+RQRP_TRAN_STK_ORD          = 601      # 주식 매도/매수 주문
+RQRP_TRAN_STK_MDFY         = 602      # 주식 정정/취소 주문
+RQRP_TRAN_STK_PSTN         = 655      # 주식 잔고 조회
 
 
-REAL_TRAN_PRC   =   1                   # 주식 종목 우선호가
-REAL_TRAN_TRD   =  21                   # 주식 종목 체결시세
-RQRP_TRAN_ORD   = 601                   # 주식 매도/매수 주문
-RQRP_TRAN_MDFY  = 602                   # 주식 정정/취소 주문
+HWND = 0

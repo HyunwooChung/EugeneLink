@@ -1,5 +1,9 @@
-from EugeneMain import *
+import win32ui
+from PyQt5.QtWidgets import *
+from EugeneHd import *
+from EugeneLib import *
 
+#실시간 시세 모듈
 class EugeneRealPrc(object):
     def __init__(self, QMainWindow):
         self.ui = QMainWindow
@@ -8,28 +12,27 @@ class EugeneRealPrc(object):
     def ReqRealPrc(self):
         sCode = self.ui.EditCode.text()
         sCode = sCode.encode()
-        print(sCode)
-
-        self.Hwnd = win32ui.FindWindow(None, "MainWindow").GetSafeHwnd()
 
         # 표준종목코드로 변환하여 조회
         sStdCode = EugeneLib.OpCodeAPI_GetExpCode(sCode)
 
-        # 주식 우선호가 요청
-        iErr = EugeneLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_PRC, sStdCode)
+        self.Hwnd = win32ui.FindWindow(None, "MainWindow").GetSafeHwnd()
 
-        if iErr == 0:
-            self.ui.TxtBrLog.append('Initialize : 서버접속 정상')
-        else:
-            self.ui.TxtBrLog.append('Initialize : 서버접속 실패')
+        # 주식 우선호가 요청
+        iRtn = EugeneLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_STK_PRC, sStdCode)
+
+        if iRtn < 0 :
+            sErrMsg = DIC_SETREAL_ERROR.get(iRtn)
+            sErrMsg = "우선호가 요청 오류 : " + sErrMsg
+            self.ui.TxtBrLog.append(sErrMsg)
 
         # 주식 체결시세 요청
-        iErr = EugeneLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_TRD, sStdCode)
+        iRtn = EugeneLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_STK_TRD, sStdCode)
 
-        if iErr == 0:
-            self.ui.TxtBrLog.append('Initialize : 서버접속 정상')
-        else:
-            self.ui.TxtBrLog.append('Initialize : 서버접속 실패')
+        if iRtn < 0 :
+            sErrMsg = DIC_SETREAL_ERROR.get(iRtn)
+            sErrMsg = "체결시세 요청 오류 : " + sErrMsg
+            self.ui.TxtBrLog.append(sErrMsg)
 
 
     # 실시간 주식 우선호가 수신처리
