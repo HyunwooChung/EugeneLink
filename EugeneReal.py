@@ -30,7 +30,7 @@ class EugeneReal(object):
             self.ui.TxtBrLog.append(sErrMsg)
 
         # 주식 체결시세 요청
-        iRtn = CLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_STK_TRD, sStdCode)
+        iRtn = CLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_STK_TICK, sStdCode)
 
         if iRtn < 0:
             sErrMsg = dic_setreal_error.get(iRtn)
@@ -155,34 +155,34 @@ class EugeneReal(object):
             self.ui.TablePrc.setItem(i + 5, 4, QTableWidgetItem(sVal))
 
     # 실시간 주식 체결시세 수신처리
-    def RecvRealStkTrd(self, wParam, lParam):
-        lstTrd = []
+    def RecvRealStkTick(self, wParam, lParam):
+        lstTick = []
         sVal = CLib.OpCommAPI_GetRealData(wParam,  1)  # 체결시각
-        lstTrd.append(sVal.decode("cp949"))
+        lstTick.append(sVal.decode("cp949"))
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  4)  # 체결가
-        lstTrd.append(sVal.decode("cp949"))
+        lstTick.append(sVal.decode("cp949"))
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  2)  # 전일대비
-        lstTrd.append(sVal.decode("cp949"))
+        lstTick.append(sVal.decode("cp949"))
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 14)  # 체결량
-        lstTrd.append(sVal.decode("cp949"))
+        lstTick.append(sVal.decode("cp949"))
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 15)  # 누적거래량
-        lstTrd.append(sVal.decode("cp949"))
+        lstTick.append(sVal.decode("cp949"))
 
         MAX_ROW = 20
         iRow = self.ui.TableTrd.rowCount()
 
         # 체결시세 row가 MAX_ROW를 넘으면 삭제
         if (iRow >= MAX_ROW):
-            self.ui.TableTrd.removeRow(MAX_ROW)
+            self.ui.TableTick.removeRow(MAX_ROW)
 
-        self.ui.TableTrd.insertRow(0)
+        self.ui.TableTick.insertRow(0)
 
         for i in range(len(lstTrd)):
-            self.ui.TableTrd.setItem(0, i, QTableWidgetItem(lstTrd[i]))
+            self.ui.TableTick.setItem(0, i, QTableWidgetItem(lstTrd[i]))
 
 
 

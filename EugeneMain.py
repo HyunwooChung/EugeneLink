@@ -53,6 +53,7 @@ class MyWindow(QMainWindow, ui):
 
     # 윈도우 컨트롤 셋팅
     def SetControl(self):
+        self.BtnTrd.clicked.connect(self.BtnTrdClick)
         self.BtnPstn.clicked.connect(self.BtnPstnClick)
         self.BtnPrc.clicked.connect(self.BtnPrcClick)
         self.BtnBuy.clicked.connect(self.BtnBuyClick)
@@ -60,6 +61,7 @@ class MyWindow(QMainWindow, ui):
         self.BtnMdfy.clicked.connect(self.BtnMdfyClick)
         self.BtnCncl.clicked.connect(self.BtnCnclClick)
         self.EditCode.textChanged.connect(self.EditCodeChanged)
+        self.CmbBns.currentIndexChanged.connect(self.CmbBnsChanged)
 
     # 유진 API 윈도우 이벤트 수신처리
     # PyQt 사용시 일반적인 윈도우 이벤트 수신처리 방법을 모르겠음
@@ -100,10 +102,8 @@ class MyWindow(QMainWindow, ui):
         if wParam == REAL_TRAN_STK_PRC:
             self.CReal.RecvRealStkPrc(wParam, lParam)
         # 실시간 주식 체결시세 수신처리
-        elif wParam == REAL_TRAN_STK_TRD:
-            self.CReal.RecvRealStkTrd(wParam, lParam)
-        elif wParam == REAL_TRAN_STK_ORD:
-            pass
+        elif wParam == REAL_TRAN_STK_TICK:
+            self.CReal.RecvRealStkTick(wParam, lParam)
 
     def RecvRqRp(self, wParam, lParam):
         # 주식 매도/매수 주문 응답처리
@@ -112,37 +112,49 @@ class MyWindow(QMainWindow, ui):
         # 주식 정정/취소 주문 응답처리
         elif wParam == RQRP_TRAN_STK_MDFY:
             self.COrd.RecvStkMdfy(wParam, lParam, self.iRqRpID)
+        # 주식 주문/체결 조회 응답처리
+        elif wParam == RQRP_TRAN_STK_TRD:
+            self.CQry.RecvStkTrd(wParam, lParam, self.iRqRpID)
         # 주식잔고 조회 응답처리
         elif wParam == RQRP_TRAN_STK_PSTN:
             self.CQry.RecvStkPstn(wParam, lParam, self.iRqRpID)
 
     def RecvRqRpErr(self, wParam, lParam):
-        pass
+        print(wParam)
+        print(lParam)
 
 
     # 실시간시세 버튼 클릭
     def BtnPrcClick(self):
         self.CReal.ReqRealStkPrc()
 
-    # 잔고조회 버튼 클릭
+    # 주식 주문/체결 조회 버튼 클릭
+    def BtnTrdClick(self):
+        self.iRqRpID = self.CQry.QueryStkTrd()
+
+    # 주식잔고 조회 버튼 클릭
     def BtnPstnClick(self):
         self.iRqRpID = self.CQry.QueryStkPstn()
 
-    # 매수주문 버튼 클릭
+    # 주식 매수주문 버튼 클릭
     def BtnBuyClick(self):
         self.iRqRpID = self.COrd.SendStkOrd("20")
 
-    # 매도주문 버튼 클릭
+    # 주식 매도주문 버튼 클릭
     def BtnSellClick(self):
         self.iRqRpID = self.COrd.SendStkOrd("10")
 
-    # 정정주문 버튼 클릭
+    # 주식 정정주문 버튼 클릭
     def BtnMdfyClick(self):
         self.iRqRpID = self.COrd.SendStkMdfy("20")
 
-    # 취소주문 버튼 클릭
+    # 주식 취소주문 버튼 클릭
     def BtnCnclClick(self):
         self.iRqRpID = self.COrd.SendStkMdfy("30")
+
+    # 주문유형 콤보박스 변경시
+    def CmbBnsChanged(self):
+        print(111)
 
     # 종목코드 입력시
     def EditCodeChanged(self):
@@ -156,7 +168,6 @@ class MyWindow(QMainWindow, ui):
             sCodeNM = sCodeNM.decode("cp949")
             self.TxtBrNm.setText(sCodeNM)
             self.TxtBrNm_2.setText(sCodeNM)
-
         else:
             self.TxtBrNm.setText("")
 

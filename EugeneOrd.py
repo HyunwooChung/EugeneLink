@@ -61,7 +61,7 @@ class EugeneOrd(object):
 
         if iRtn < 0:
             sErrMsg = dic_sendrq_error.get(iRtn)
-            sErrMsg = "신규주문 전송 오류 (" + sErrMsg + ")"
+            sErrMsg = "신규주문 전송 : 오류 (" + sErrMsg + ")"
             self.ui.TxtBrLog.append(sErrMsg)
 
         return iRtn
@@ -134,10 +134,4 @@ class EugeneOrd(object):
         self.TxtBrOrdNo_2.setText(sVal.decode("cp949"))
 
         CLib.OpCommAPI_ClearRQData()
-
-
-
-
-
-
 
