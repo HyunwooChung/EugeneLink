@@ -11,6 +11,6 @@
 * EugeneOrd.py
 * EugeneQry.py
 * EugeneLib.py
-* EugeneRealPrc.py
+* EugeneReal.py
 * EugeneWindow.ui
 
