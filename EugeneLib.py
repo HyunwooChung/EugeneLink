@@ -2,7 +2,6 @@ from ctypes import *
 
 # 유진 Library Load 모듈
 class EugeneLib(object):
-
     OpCommAPI = windll.LoadLibrary('C:\\EugeneFN\\NewChampionLink\\OpCommAPI.dll')
     OpCodeAPI = windll.LoadLibrary('C:\\EugeneFN\\NewChampionLink\\OpCodeAPI.dll')
 
@@ -57,3 +56,5 @@ class EugeneLib(object):
     OpCodeAPI_GetNameByCode = OpCodeAPI.OpCodeAPI_GetNameByCode
     OpCodeAPI_GetNameByCode.restype = c_char_p
     OpCodeAPI_GetNameByCode.argtypes = [c_char_p]
+
+CLib = EugeneLib()

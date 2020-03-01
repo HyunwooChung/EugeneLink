@@ -26,12 +26,14 @@ WM_EU_RQRP_ERR_RECV	 = 7420 #WM_USER+6396
 WM_EU_NOTI_RECV	     = 7421 #WM_USER+6397
 
 # WM_EU_NOTI_RECV Notify Value
-NOTI_MULTICONNECT_DENIED   =  50      # 다중접속에 의한 접속 해제
-NOTI_SOCKET_CLOSED         =  51      # 통신 단절
-NOTI_SERVER_NOTIFY         = 100      # 서버에서 내려온 긴급 메세지.
+dic_noti_error = \
+    {  50 :  "다중접속에 의한 접속 해제"
+    ,  51 :  "통신 단절"
+    , 100 :  "서버에서 내려온 긴급 메세지"
+    }
 
 # OpCommAPI_SendRq return Value
-DIC_SENDRQ_ERROR = \
+dic_sendrq_error = \
     { -99 :  "Initialize 하지 않음"
     , -21 :  "존재하지 않는 RQRPID"
     , -22 :  "RQ데이터 부족"
@@ -53,15 +55,18 @@ DIC_SENDRQ_ERROR = \
     , -16 :  "데이터 조회중 오류"
     , -17 :  "인증서 오류" }
 
-
 # OpCommAPI_RequestReal return Value
-DIC_SETREAL_ERROR = \
+dic_setreal_error = \
     { -99 :  "Initialize 하지 않음"
     ,  -1 :  "주문체결통보 설정시 본인 ID가 아님"
     }
 
+# REAL TRAN
 REAL_TRAN_STK_PRC          =   1      # 주식 종목 우선호가
 REAL_TRAN_STK_TRD          =  21      # 주식 종목 체결시세
+REAL_TRAN_STK_ORD          = 191      # 주식 주문/체결 통보
+
+# RQRP TRAN
 RQRP_TRAN_STK_ORD          = 601      # 주식 매도/매수 주문
 RQRP_TRAN_STK_MDFY         = 602      # 주식 정정/취소 주문
 RQRP_TRAN_STK_PSTN         = 655      # 주식 잔고 조회

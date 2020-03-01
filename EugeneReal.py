@@ -4,7 +4,7 @@ from EugeneHd import *
 from EugeneLib import *
 
 #실시간 시세 모듈
-class EugeneRealPrc(object):
+class EugeneReal(object):
     def __init__(self, QMainWindow):
         self.ui = QMainWindow
 

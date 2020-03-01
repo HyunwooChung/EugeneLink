@@ -7,7 +7,7 @@ from EugeneHd  import *
 from EugeneLib import *
 from EugeneOrd import *
 from EugeneQry import *
-from EugeneRealPrc import *
+from EugeneReal import *
 
 ui = uic.loadUiType("C:\\EugeneFN\\NewChampionLink\\EugeneWindow.ui")[0]
 
@@ -16,36 +16,35 @@ class MyWindow(QMainWindow, ui):
         super().__init__()
         self.setupUi(self)
 
-        # 유진 Library Load
-        EugeneLib()
-
-        # 실시간 시세 클래스 선언
-        self.CRealPrc = EugeneRealPrc(self)
-
-        # 주문전송 클래스 선언
-        self.COrd = EugeneOrd(self)
-
-        # RQRP 조회 클래스 선언
-        self.CQry = EugeneQry(self)
-
         # 윈도우 이벤트 수신처리
         self.WindowEvent(self.winId())
-
-        # 윈도우 컨트롤 셋팅
-        self.SetControl()
 
         # 윈도우핸들러
         # 유진 Library 호출시 필요
         self.Hwnd = win32ui.FindWindow(None, "MainWindow").GetSafeHwnd()
         sMsg = "윈도우핸들러 : " + str(self.Hwnd)
         self.TxtBrLog.append(sMsg)
+        print(sMsg)
 
-        iRtn = EugeneLib.OpCommAPI_Initialize(self.Hwnd)
+        # 실시간 시세 인스턴스 생성
+        self.CReal = EugeneReal(self)
+
+
+        # 주문전송 인스턴스 생성
+        self.COrd = EugeneOrd(self)
+
+        # RQRP 조회 인스턴스 생성
+        self.CQry = EugeneQry(self)
+
+        # 윈도우 컨트롤 셋팅
+        self.SetControl()
+
+        iRtn = CLib.OpCommAPI_Initialize(self.Hwnd)
 
         if iRtn == 0:
-            self.TxtBrLog.append('Initialize : 서버접속 실패')
+            self.TxtBrLog.append("서버접속 : 실패")
         else:
-            self.TxtBrLog.append('Initialize : 서버접속 성공')
+            self.TxtBrLog.append("서버접속 : 성공")
 
         # 예제용 입력값
         self.EditCode.setText("005930")
@@ -76,12 +75,14 @@ class MyWindow(QMainWindow, ui):
                 self.RecvRqRp(wParam, lParam)
             elif msg == WM_EU_RQRP_ERR_RECV:
                 self.RecvRqRpErr(wParam, lParam)
+            elif msg == WM_EU_NOTI_RECV:
+                pass
             elif msg == win32con.WM_DESTROY:
-                iRtn = EugeneLib.OpCommAPI_UnInitialize()
+                iRtn = CLib.OpCommAPI_UnInitialize()
                 if iRtn == 0:
-                    self.TxtBrLog.append('UnInitialize : 종료실패')
+                    self.TxtBrLog.append("서버종료 : 실패")
                 else:
-                    self.TxtBrLog.append('UnInitialize : 종료성공')
+                    self.TxtBrLog.append("서버종료 : 성공")
 
                 win32gui.DestroyWindow(app_hwnd)
                 win32gui.PostQuitMessage(0)
@@ -94,15 +95,17 @@ class MyWindow(QMainWindow, ui):
         self.old_win32_proc = win32gui.SetWindowLong(app_hwnd, win32con.GWL_WNDPROC, WindowProc)
 
 
-    def RecvRaal(self, wParam, lParam):
+    def RecvReal(self, wParam, lParam):
         # 실시간 주식 우선호가 수신처리
         if wParam == REAL_TRAN_STK_PRC:
-            self.CRealPrc.RecvRealPrc(wParam, lParam)
+            self.CReal.RecvRealStkPrc(wParam, lParam)
         # 실시간 주식 체결시세 수신처리
         elif wParam == REAL_TRAN_STK_TRD:
-            self.CRealPrc.RecvRealTrd(wParam, lParam)
+            self.CReal.RecvRealStkTrd(wParam, lParam)
+        elif wParam == REAL_TRAN_STK_ORD:
+            pass
 
-    def RecvRqRp(self, wParam, lParam ):
+    def RecvRqRp(self, wParam, lParam):
         # 주식 매도/매수 주문 응답처리
         if wParam == RQRP_TRAN_STK_ORD:
             self.COrd.RecvStkOrd(wParam, lParam, self.iRqRpID)
@@ -119,7 +122,7 @@ class MyWindow(QMainWindow, ui):
 
     # 실시간시세 버튼 클릭
     def BtnPrcClick(self):
-        self.CRealPrc.ReqRealPrc()
+        self.CReal.ReqRealStkPrc()
 
     # 잔고조회 버튼 클릭
     def BtnPstnClick(self):
@@ -146,10 +149,14 @@ class MyWindow(QMainWindow, ui):
         sCode = self.EditCode.text()
         # 종목코드를 6자리 입력한 경우 종목명 조회
         if len(sCode) == 6:
+            self.EditCode_2.setText(sCode)
+
             sCode = sCode.encode()
-            sCodeNM = EugeneLib.OpCodeAPI_GetNameByCode(sCode)
+            sCodeNM = CLib.OpCodeAPI_GetNameByCode(sCode)
             sCodeNM = sCodeNM.decode("cp949")
             self.TxtBrNm.setText(sCodeNM)
+            self.TxtBrNm_2.setText(sCodeNM)
+
         else:
             self.TxtBrNm.setText("")
 
@@ -159,5 +166,3 @@ if __name__ == "__main__":
     myApp = MyWindow()
     myApp.show()
     app.exec_()
-
-
