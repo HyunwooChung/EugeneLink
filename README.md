@@ -2,7 +2,7 @@
 
 ## 개발환경
 * Anaconda 3 (32bit)
-* Pycharm 2018.3.7 (32bit)
+* Pycharm 2018.3.7 (32bit) - 이후 버전은 32bit 설치 불가
 * PyQt5
 
 ## 파일설명
