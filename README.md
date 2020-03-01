@@ -14,3 +14,4 @@
 * EugeneReal.py
 * EugeneWindow.ui
 
+## 주의사항
