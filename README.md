@@ -7,10 +7,10 @@
 
 ## 파일설명
 * EugeneMain.py
-  * aasdf
 * EugeneHd.py
 * EugeneOrd.py
 * EugeneQry.py
 * EugeneLib.py
 * EugeneRealPrc.py
+* EugeneWindow.ui
 
