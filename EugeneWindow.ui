@@ -717,7 +717,7 @@
      <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
     <property name="rowCount">
-     <number>10</number>
+     <number>6</number>
     </property>
     <property name="columnCount">
      <number>9</number>
@@ -734,10 +734,6 @@
     <attribute name="verticalHeaderDefaultSectionSize">
      <number>20</number>
     </attribute>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
     <row/>
     <row/>
     <row/>
@@ -829,10 +825,10 @@
      <enum>Qt::ScrollBarAlwaysOn</enum>
     </property>
     <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
+     <enum>Qt::ScrollBarAsNeeded</enum>
     </property>
     <property name="rowCount">
-     <number>10</number>
+     <number>6</number>
     </property>
     <property name="columnCount">
      <number>13</number>
@@ -855,13 +851,19 @@
     <row/>
     <row/>
     <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
     <column>
      <property name="text">
       <string>주문번호</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>원주문</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>종목코드</string>
      </property>
     </column>
     <column>
@@ -872,6 +874,11 @@
     <column>
      <property name="text">
       <string>매매구분</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>주문유형</string>
      </property>
     </column>
     <column>
@@ -891,21 +898,14 @@
     </column>
     <column>
      <property name="text">
-      <string>상태</string>
+      <string>체결수량</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>주문유형</string>
+      <string>체결단가</string>
      </property>
     </column>
-    <column>
-     <property name="text">
-      <string>원주문</string>
-     </property>
-    </column>
-    <column/>
-    <column/>
     <column/>
     <column/>
    </widget>
@@ -1380,6 +1380,19 @@
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BtnTrd">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>570</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>주문조회</string>
     </property>
    </widget>
   </widget>

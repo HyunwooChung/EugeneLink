@@ -64,11 +64,11 @@ dic_setreal_error = \
 # REAL TRAN
 REAL_TRAN_STK_PRC          =   1      # 주식 종목 우선호가
 REAL_TRAN_STK_TRD          =  21      # 주식 종목 체결시세
-REAL_TRAN_STK_ORD          = 191      # 주식 주문/체결 통보
 
 # RQRP TRAN
 RQRP_TRAN_STK_ORD          = 601      # 주식 매도/매수 주문
 RQRP_TRAN_STK_MDFY         = 602      # 주식 정정/취소 주문
+RQRP_TRAN_STK_TRD          = 653      # 주식 주문/체결 조회
 RQRP_TRAN_STK_PSTN         = 655      # 주식 잔고 조회
 
 
