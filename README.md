@@ -8,9 +8,9 @@
 ## 파일설명
 * EugeneMain.py
 * EugeneHd.py
+* EugeneLib.py
 * EugeneOrd.py
 * EugeneQry.py
-* EugeneLib.py
 * EugeneReal.py
 * EugeneWindow.ui
 
