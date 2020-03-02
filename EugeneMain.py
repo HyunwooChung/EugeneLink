@@ -2,6 +2,7 @@ import sys
 import win32ui, win32gui, win32con, win32ts
 from ctypes import *
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
 from PyQt5 import uic
 from EugeneHd  import *
 from EugeneLib import *
@@ -10,7 +11,6 @@ from EugeneQry import *
 from EugeneReal import *
 
 ui = uic.loadUiType("C:\\EugeneFN\\NewChampionLink\\EugeneWindow.ui")[0]
-RQRPID = 0
 
 class MyWindow(QMainWindow, ui):
     def __init__(self):
@@ -27,6 +27,12 @@ class MyWindow(QMainWindow, ui):
         self.TxtBrLog.append(sMsg)
         print(sMsg)
 
+        # 윈도우폼 셋팅
+        self.SetWindowForm()
+
+        # 윈도우 컨트롤 셋팅
+        self.SetControl()
+
         # 실시간 시세 인스턴스 생성
         self.CReal = EugeneReal(self)
 
@@ -35,9 +41,6 @@ class MyWindow(QMainWindow, ui):
 
         # RQRP 조회 인스턴스 생성
         self.CQry = EugeneQry(self)
-
-        # 윈도우 컨트롤 셋팅
-        self.SetControl()
 
         iRtn = CLib.OpCommAPI_Initialize(self.Hwnd)
 
@@ -50,6 +53,55 @@ class MyWindow(QMainWindow, ui):
         self.EditCode.setText("005930")
         self.EditAcno.setText("27111091101")
         self.EditPswd.setText("1357")
+
+    def SetWindowForm(self):
+        # 우선호가 TableWidget 컬럼크기 셋팅
+        iTblCnt = self.TablePrc.rowCount()
+        for i in range(iTblCnt):
+            self.TablePrc.setRowHeight(i, 20)
+
+        # 체결시세 TableWidget 컬럼크기 셋팅
+        iTblCnt = self.TableTick.rowCount()
+        for i in range(iTblCnt):
+            self.TableTick.setRowHeight(i, 20)
+
+        # 주문/체결조회 TableWidget 컬럼크기 셋팅
+        iTblCnt = self.TableTrd.rowCount()
+        for i in range(iTblCnt):
+            self.TableTrd.setRowHeight(i, 20)
+
+        iTblCnt = self.TableTrd.columnCount()
+        for i in range(iTblCnt):
+            self.TableTrd.setColumnWidth(i, tpl_TablePstn[i][0])
+
+        '''
+        self.TableTrd.setColumnWidth( 0,  60)
+        self.TableTrd.setColumnWidth( 1,  60)
+        self.TableTrd.setColumnWidth( 2,  70)
+        self.TableTrd.setColumnWidth( 3, 120)
+        self.TableTrd.setColumnWidth( 4,  60)
+        self.TableTrd.setColumnWidth( 5,  70)
+        self.TableTrd.setColumnWidth( 6,  70)
+        self.TableTrd.setColumnWidth( 7,  90)
+        self.TableTrd.setColumnWidth( 8,  70)
+        self.TableTrd.setColumnWidth( 9,  70)
+        self.TableTrd.setColumnWidth(10,  90)
+        '''
+
+        # 잔고조회 TableWidget 컬럼크기 셋팅
+        iTblRow = self.TablePstn.rowCount()
+        for i in range(iTblRow):
+            self.TablePstn.setRowHeight(i, 20)
+
+        self.TablePstn.setColumnWidth( 0,  70)
+        self.TablePstn.setColumnWidth( 1, 120)
+        self.TablePstn.setColumnWidth( 2,  70)
+        self.TablePstn.setColumnWidth( 3,  70)
+        self.TablePstn.setColumnWidth( 4,  70)
+        self.TablePstn.setColumnWidth( 5,  90)
+        self.TablePstn.setColumnWidth( 6, 110)
+        self.TablePstn.setColumnWidth( 7, 110)
+        self.TablePstn.setColumnWidth( 8, 110)
 
 
     # 윈도우 컨트롤 셋팅
@@ -166,7 +218,7 @@ class MyWindow(QMainWindow, ui):
 
     # 주문유형 콤보박스 변경시
     def CmbBnsChanged(self):
-        print(111)
+        pass
 
     # 종목코드 입력시
     def EditCodeChanged(self):

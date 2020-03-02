@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>636</width>
-    <height>828</height>
+    <height>807</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>4</x>
-      <y>273</y>
+      <y>275</y>
       <width>271</width>
       <height>145</height>
      </rect>
@@ -58,8 +58,8 @@
      <rect>
       <x>279</x>
       <y>27</y>
-      <width>351</width>
-      <height>244</height>
+      <width>352</width>
+      <height>245</height>
      </rect>
     </property>
     <property name="verticalScrollBarPolicy">
@@ -69,7 +69,7 @@
      <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
     <property name="rowCount">
-     <number>12</number>
+     <number>11</number>
     </property>
     <property name="columnCount">
      <number>5</number>
@@ -92,7 +92,9 @@
     <attribute name="verticalHeaderDefaultSectionSize">
      <number>20</number>
     </attribute>
-    <row/>
+    <attribute name="verticalHeaderMinimumSectionSize">
+     <number>20</number>
+    </attribute>
     <row/>
     <row/>
     <row/>
@@ -132,6 +134,9 @@
     <item row="0" column="0">
      <property name="text">
       <string/>
+     </property>
+     <property name="textAlignment">
+      <set>AlignTrailing|AlignVCenter</set>
      </property>
      <property name="background">
       <brush brushstyle="SolidPattern">
@@ -175,6 +180,9 @@
      <property name="text">
       <string/>
      </property>
+     <property name="textAlignment">
+      <set>AlignTrailing|AlignVCenter</set>
+     </property>
      <property name="background">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
@@ -216,6 +224,9 @@
     <item row="2" column="0">
      <property name="text">
       <string/>
+     </property>
+     <property name="textAlignment">
+      <set>AlignTrailing|AlignVCenter</set>
      </property>
      <property name="background">
       <brush brushstyle="SolidPattern">
@@ -594,8 +605,8 @@
     <property name="geometry">
      <rect>
       <x>279</x>
-      <y>273</y>
-      <width>351</width>
+      <y>275</y>
+      <width>352</width>
       <height>145</height>
      </rect>
     </property>
@@ -621,6 +632,9 @@
      <bool>false</bool>
     </attribute>
     <attribute name="verticalHeaderDefaultSectionSize">
+     <number>20</number>
+    </attribute>
+    <attribute name="verticalHeaderMinimumSectionSize">
      <number>20</number>
     </attribute>
     <row/>
@@ -705,19 +719,19 @@
     <property name="geometry">
      <rect>
       <x>4</x>
-      <y>636</y>
+      <y>617</y>
       <width>625</width>
-      <height>145</height>
+      <height>142</height>
      </rect>
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOn</enum>
     </property>
     <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
+     <enum>Qt::ScrollBarAsNeeded</enum>
     </property>
     <property name="rowCount">
-     <number>6</number>
+     <number>8</number>
     </property>
     <property name="columnCount">
      <number>9</number>
@@ -734,6 +748,11 @@
     <attribute name="verticalHeaderDefaultSectionSize">
      <number>20</number>
     </attribute>
+    <attribute name="verticalHeaderMinimumSectionSize">
+     <number>20</number>
+    </attribute>
+    <row/>
+    <row/>
     <row/>
     <row/>
     <row/>
@@ -790,7 +809,7 @@
     <property name="geometry">
      <rect>
       <x>551</x>
-      <y>611</y>
+      <y>592</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -816,9 +835,9 @@
     <property name="geometry">
      <rect>
       <x>4</x>
-      <y>446</y>
+      <y>448</y>
       <width>625</width>
-      <height>162</height>
+      <height>142</height>
      </rect>
     </property>
     <property name="verticalScrollBarPolicy">
@@ -828,7 +847,7 @@
      <enum>Qt::ScrollBarAsNeeded</enum>
     </property>
     <property name="rowCount">
-     <number>6</number>
+     <number>5</number>
     </property>
     <property name="columnCount">
      <number>11</number>
@@ -845,7 +864,9 @@
     <attribute name="verticalHeaderDefaultSectionSize">
      <number>20</number>
     </attribute>
-    <row/>
+    <attribute name="verticalHeaderMinimumSectionSize">
+     <number>20</number>
+    </attribute>
     <row/>
     <row/>
     <row/>
@@ -912,8 +933,8 @@
      <rect>
       <x>4</x>
       <y>27</y>
-      <width>273</width>
-      <height>220</height>
+      <width>274</width>
+      <height>222</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -1371,7 +1392,7 @@
     <property name="geometry">
      <rect>
       <x>4</x>
-      <y>250</y>
+      <y>252</y>
       <width>271</width>
       <height>20</height>
      </rect>
@@ -1384,7 +1405,7 @@
     <property name="geometry">
      <rect>
       <x>551</x>
-      <y>421</y>
+      <y>423</y>
       <width>75</width>
       <height>23</height>
      </rect>

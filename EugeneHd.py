@@ -1,3 +1,5 @@
+from PyQt5.QtCore import Qt
+
 # OpCommAPI_Initialize 함수 호출시 Starter 화면에 보내는 메세지
 WM_EU_STARTER_CLOSE  = 7417 # WM_USER+6393
 
@@ -72,4 +74,17 @@ RQRP_TRAN_STK_TRD          = 653      # 주식 주문/체결 조회
 RQRP_TRAN_STK_PSTN         = 655      # 주식 잔고 조회
 
 
-HWND = 0
+tpl_TablePstn = \
+    (
+          ( 60, Qt.AlignRight )
+        , ( 60, Qt.AlignRight )
+        , ( 70, Qt.AlignCenter)
+        , (120, Qt.AlignLeft  )
+        , ( 60, Qt.AlignCenter)
+        , ( 70, Qt.AlignCenter)
+        , ( 70, Qt.AlignRight )
+        , ( 90, Qt.AlignRight )
+        , ( 70, Qt.AlignRight )
+        , ( 70, Qt.AlignRight )
+        , ( 90, Qt.AlignRight )
+    )

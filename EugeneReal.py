@@ -1,5 +1,6 @@
 import win32ui
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
 from EugeneHd import *
 from EugeneLib import *
 
@@ -145,6 +146,11 @@ class EugeneReal(object):
             sVal = lstSell[(i * 3) + 2]
             self.ui.TablePrc.setItem(i, 2, QTableWidgetItem(sVal))
 
+            # 컬럼 정렬
+            self.ui.TablePrc.item(i, 0).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePrc.item(i, 1).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePrc.item(i, 2).setTextAlignment(Qt.AlignRight)
+
         # 매수 1~5호가 셋팅
         for i in range(0, 5):
             sVal = lstBuy[i * 3]
@@ -153,6 +159,11 @@ class EugeneReal(object):
             self.ui.TablePrc.setItem(i + 5, 3, QTableWidgetItem(sVal))
             sVal = lstBuy[(i * 3) + 2]
             self.ui.TablePrc.setItem(i + 5, 4, QTableWidgetItem(sVal))
+
+            # 컬럼 정렬
+            self.ui.TablePrc.item(i + 5, 2).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePrc.item(i + 5, 3).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePrc.item(i + 5, 4).setTextAlignment(Qt.AlignRight)
 
 
     # 실시간 주식 체결시세 수신처리
@@ -185,5 +196,9 @@ class EugeneReal(object):
         for i in range(len(lstTick)):
             self.ui.TableTick.setItem(0, i, QTableWidgetItem(lstTick[i]))
 
-
-
+        # 컬럼 정렬
+        self.ui.TableTick.item(0, 0).setTextAlignment(Qt.AlignCenter)
+        self.ui.TableTick.item(0, 1).setTextAlignment(Qt.AlignRight)
+        self.ui.TableTick.item(0, 3).setTextAlignment(Qt.AlignRight)
+        self.ui.TableTick.item(0, 4).setTextAlignment(Qt.AlignRight)
+        self.ui.TableTick.item(0, 5).setTextAlignment(Qt.AlignRight)

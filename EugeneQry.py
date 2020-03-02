@@ -1,5 +1,6 @@
 import win32ui
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
 from EugeneHd import *
 from EugeneLib import *
 
@@ -47,48 +48,70 @@ class EugeneQry(object):
 
         for i in range(iCnt):
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 4)      # 주문번호
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TableTrd.setItem(i, 0, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 5)      # 원주문번호
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TableTrd.setItem(i, 1, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 6)      # 종목코드
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TableTrd.setItem(i, 2, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 7)      # 종목명
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TableTrd.setItem(i, 3, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 8)      # 정정취소구분
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TableTrd.setItem(i, 4, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 9)      # 매매구분
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TableTrd.setItem(i, 5, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 11)     # 주문수량
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TableTrd.setItem(i, 6, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 12)     # 주문가격
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
+            value = str(int(float(value)))
             self.ui.TableTrd.setItem(i, 7, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 13)     # 미체결잔량
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TableTrd.setItem(i, 8, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 14)     # 체결수량
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TableTrd.setItem(i, 9, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 32)     # 체결평균단가
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
+            value = str(int(float(value)))
             self.ui.TableTrd.setItem(i, 10, QTableWidgetItem(value))
+            '''
+            iTblCnt = self.ui.TableTrd.columnCount()
+            for j in range(iTblCnt):
+                self.ui.TableTrd.item(i, j).setTextAlignment(tpl_TablePstn[j][1])
+                
+            '''
+
+            # 컬럼 정렬
+            self.ui.TableTrd.item(i,  0).setTextAlignment(Qt.AlignRight)
+            self.ui.TableTrd.item(i,  1).setTextAlignment(Qt.AlignRight)
+            self.ui.TableTrd.item(i,  2).setTextAlignment(Qt.AlignCenter)
+            self.ui.TableTrd.item(i,  3).setTextAlignment(Qt.AlignLeft)
+            self.ui.TableTrd.item(i,  4).setTextAlignment(Qt.AlignCenter)
+            self.ui.TableTrd.item(i,  5).setTextAlignment(Qt.AlignCenter)
+            self.ui.TableTrd.item(i,  6).setTextAlignment(Qt.AlignRight)
+            self.ui.TableTrd.item(i,  7).setTextAlignment(Qt.AlignRight)
+            self.ui.TableTrd.item(i,  8).setTextAlignment(Qt.AlignRight)
+            self.ui.TableTrd.item(i,  9).setTextAlignment(Qt.AlignRight)
+            self.ui.TableTrd.item(i, 10).setTextAlignment(Qt.AlignRight)
+
 
 
     # 주식잔고 조회 요청
@@ -130,37 +153,49 @@ class EugeneQry(object):
 
         for i in range(iCnt):
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 0)      # 종목코드
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TablePstn.setItem(i, 0, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 1)      # 종목명
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TablePstn.setItem(i, 1, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 6)      # 잔고수량
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TablePstn.setItem(i, 2, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 9)      # 금일매수수량
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TablePstn.setItem(i, 3, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 10)     # 금일매도수량
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TablePstn.setItem(i, 4, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 11)     # 매입단가
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
+            value = str(int(float(value)))
             self.ui.TablePstn.setItem(i, 5, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 12)     # 매입금액
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TablePstn.setItem(i, 6, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 22)     # 평가금액
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TablePstn.setItem(i, 7, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 23)     # 평가손익
-            value = value.decode("cp949")
+            value = value.decode("cp949").strip()
             self.ui.TablePstn.setItem(i, 8, QTableWidgetItem(value))
+
+            # 컬럼 정렬
+            self.ui.TablePstn.item(i, 0).setTextAlignment(Qt.AlignCenter)
+            self.ui.TablePstn.item(i, 1).setTextAlignment(Qt.AlignLeft)
+            self.ui.TablePstn.item(i, 2).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePstn.item(i, 3).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePstn.item(i, 4).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePstn.item(i, 5).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePstn.item(i, 6).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePstn.item(i, 7).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePstn.item(i, 8).setTextAlignment(Qt.AlignRight)

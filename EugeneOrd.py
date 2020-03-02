@@ -125,9 +125,7 @@ class EugeneOrd(object):
 
     # 주식 매도/매수 주문 응답처리
     def RecvStkOrd(self, wParam, lParam, iRqRpID):
-        print("recvestkord")
         sVal = CLib.OpCommAPI_GetRqrpData(iRqRpID, 0, 0, 0)
-        print(sVal)
         self.ui.TxtBrOrdNo.setText(sVal.decode("cp949"))
 
 
