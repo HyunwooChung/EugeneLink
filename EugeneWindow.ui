@@ -831,7 +831,7 @@
      <number>6</number>
     </property>
     <property name="columnCount">
-     <number>13</number>
+     <number>11</number>
     </property>
     <attribute name="horizontalHeaderVisible">
      <bool>true</bool>
@@ -906,8 +906,6 @@
       <string>체결단가</string>
      </property>
     </column>
-    <column/>
-    <column/>
    </widget>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">

@@ -10,6 +10,7 @@ from EugeneQry import *
 from EugeneReal import *
 
 ui = uic.loadUiType("C:\\EugeneFN\\NewChampionLink\\EugeneWindow.ui")[0]
+RQRPID = 0
 
 class MyWindow(QMainWindow, ui):
     def __init__(self):
@@ -29,7 +30,6 @@ class MyWindow(QMainWindow, ui):
         # 실시간 시세 인스턴스 생성
         self.CReal = EugeneReal(self)
 
-
         # 주문전송 인스턴스 생성
         self.COrd = EugeneOrd(self)
 
@@ -48,8 +48,9 @@ class MyWindow(QMainWindow, ui):
 
         # 예제용 입력값
         self.EditCode.setText("005930")
-        self.EditAcno.setText("27122016751")
+        self.EditAcno.setText("27111091101")
         self.EditPswd.setText("1357")
+
 
     # 윈도우 컨트롤 셋팅
     def SetControl(self):
@@ -62,6 +63,7 @@ class MyWindow(QMainWindow, ui):
         self.BtnCncl.clicked.connect(self.BtnCnclClick)
         self.EditCode.textChanged.connect(self.EditCodeChanged)
         self.CmbBns.currentIndexChanged.connect(self.CmbBnsChanged)
+
 
     # 유진 API 윈도우 이벤트 수신처리
     # PyQt 사용시 일반적인 윈도우 이벤트 수신처리 방법을 모르겠음
@@ -105,19 +107,23 @@ class MyWindow(QMainWindow, ui):
         elif wParam == REAL_TRAN_STK_TICK:
             self.CReal.RecvRealStkTick(wParam, lParam)
 
+
     def RecvRqRp(self, wParam, lParam):
         # 주식 매도/매수 주문 응답처리
-        if wParam == RQRP_TRAN_STK_ORD:
+        if wParam == self.iRqRpID and self.RQRP_TRAN_ID == RQRP_TRAN_STK_ORD:
             self.COrd.RecvStkOrd(wParam, lParam, self.iRqRpID)
         # 주식 정정/취소 주문 응답처리
-        elif wParam == RQRP_TRAN_STK_MDFY:
+        elif wParam == self.iRqRpID and self.RQRP_TRAN_ID == RQRP_TRAN_STK_MDFY:
             self.COrd.RecvStkMdfy(wParam, lParam, self.iRqRpID)
         # 주식 주문/체결 조회 응답처리
-        elif wParam == RQRP_TRAN_STK_TRD:
+        elif wParam == self.iRqRpID and self.RQRP_TRAN_ID == RQRP_TRAN_STK_TRD:
             self.CQry.RecvStkTrd(wParam, lParam, self.iRqRpID)
         # 주식잔고 조회 응답처리
-        elif wParam == RQRP_TRAN_STK_PSTN:
+        elif wParam == self.iRqRpID and self.RQRP_TRAN_ID == RQRP_TRAN_STK_PSTN:
             self.CQry.RecvStkPstn(wParam, lParam, self.iRqRpID)
+
+        CLib.OpCommAPI_ClearRQData()
+
 
     def RecvRqRpErr(self, wParam, lParam):
         print(wParam)
@@ -131,26 +137,32 @@ class MyWindow(QMainWindow, ui):
     # 주식 주문/체결 조회 버튼 클릭
     def BtnTrdClick(self):
         self.iRqRpID = self.CQry.QueryStkTrd()
+        self.RQRP_TRAN_ID = RQRP_TRAN_STK_TRD
 
     # 주식잔고 조회 버튼 클릭
     def BtnPstnClick(self):
         self.iRqRpID = self.CQry.QueryStkPstn()
+        self.RQRP_TRAN_ID = RQRP_TRAN_STK_PSTN
 
     # 주식 매수주문 버튼 클릭
     def BtnBuyClick(self):
         self.iRqRpID = self.COrd.SendStkOrd("20")
+        self.RQRP_TRAN_ID = RQRP_TRAN_STK_ORD
 
     # 주식 매도주문 버튼 클릭
     def BtnSellClick(self):
         self.iRqRpID = self.COrd.SendStkOrd("10")
+        self.RQRP_TRAN_ID = RQRP_TRAN_STK_ORD
 
     # 주식 정정주문 버튼 클릭
     def BtnMdfyClick(self):
         self.iRqRpID = self.COrd.SendStkMdfy("20")
+        self.RQRP_TRAN_ID = RQRP_TRAN_STK_MDFY
 
     # 주식 취소주문 버튼 클릭
     def BtnCnclClick(self):
         self.iRqRpID = self.COrd.SendStkMdfy("30")
+        self.RQRP_TRAN_ID = RQRP_TRAN_STK_MDFY
 
     # 주문유형 콤보박스 변경시
     def CmbBnsChanged(self):

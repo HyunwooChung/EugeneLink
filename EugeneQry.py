@@ -38,6 +38,7 @@ class EugeneQry(object):
 
         return iRtn
 
+
     # 주식 주문/체결 조회 응답 처리
     def RecvStkTrd(self, wParam, lParam, iRqRpID):
         iCnt = CLib.OpCommAPI_GetRqrpCount(iRqRpID, 1)
@@ -83,13 +84,12 @@ class EugeneQry(object):
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 14)     # 체결수량
             value = value.decode("cp949")
-            self.ui.TableTrd.setItem(i, 7, QTableWidgetItem(value))
+            self.ui.TableTrd.setItem(i, 9, QTableWidgetItem(value))
 
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 32)     # 체결평균단가
             value = value.decode("cp949")
-            self.ui.TableTrd.setItem(i, 8, QTableWidgetItem(value))
+            self.ui.TableTrd.setItem(i, 10, QTableWidgetItem(value))
 
-        CLib.OpCommAPI_ClearRQData()
 
     # 주식잔고 조회 요청
     def QueryStkPstn(self):
@@ -120,8 +120,10 @@ class EugeneQry(object):
 
         return iRtn
 
+
     # 주식잔고 조회 응답 처리
     def RecvStkPstn(self, wParam, lParam, iRqRpID):
+        print(iRqRpID)
         iCnt = CLib.OpCommAPI_GetRqrpCount(iRqRpID, 1)
         sMsg = "주식잔고 조회 건수 : " + str(iCnt)
         self.ui.TxtBrLog.append(sMsg)
@@ -162,5 +164,3 @@ class EugeneQry(object):
             value = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 23)     # 평가손익
             value = value.decode("cp949")
             self.ui.TablePstn.setItem(i, 8, QTableWidgetItem(value))
-
-        CLib.OpCommAPI_ClearRQData()

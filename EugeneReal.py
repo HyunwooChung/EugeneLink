@@ -154,6 +154,7 @@ class EugeneReal(object):
             sVal = lstBuy[(i * 3) + 2]
             self.ui.TablePrc.setItem(i + 5, 4, QTableWidgetItem(sVal))
 
+
     # 실시간 주식 체결시세 수신처리
     def RecvRealStkTick(self, wParam, lParam):
         lstTick = []
@@ -181,8 +182,8 @@ class EugeneReal(object):
 
         self.ui.TableTick.insertRow(0)
 
-        for i in range(len(lstTrd)):
-            self.ui.TableTick.setItem(0, i, QTableWidgetItem(lstTrd[i]))
+        for i in range(len(lstTick)):
+            self.ui.TableTick.setItem(0, i, QTableWidgetItem(lstTick[i]))
 
 
 
