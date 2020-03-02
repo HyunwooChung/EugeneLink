@@ -60,7 +60,7 @@ class EugeneOrd(object):
         iRtn = CLib.OpCommAPI_SendRq(self.Hwnd, RQRP_TRAN_STK_ORD, 0)
 
         if iRtn < 0:
-            sErrMsg = dic_sendrq_error.get(iRtn)
+            sErrMsg = DIC_SENDRQ_ERR.get(iRtn)
             sErrMsg = "신규주문 전송 : 오류 (" + sErrMsg + ")"
             self.ui.TxtBrLog.append(sErrMsg)
 
@@ -116,7 +116,7 @@ class EugeneOrd(object):
         iRtn = CLib.OpCommAPI_SendRq(self.Hwnd, RQRP_TRAN_STK_MDFY, 0)
 
         if iRtn < 0:
-            sErrMsg = dic_sendrq_error.get(iRtn)
+            sErrMsg = DIC_SENDRQ_ERR.get(iRtn)
             sErrMsg = "정정취소 전송 : 오류 (" + sErrMsg + ")"
             self.ui.TxtBrLog.append(sErrMsg)
 

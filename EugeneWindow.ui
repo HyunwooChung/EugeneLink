@@ -728,10 +728,10 @@
      <enum>Qt::ScrollBarAlwaysOn</enum>
     </property>
     <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAsNeeded</enum>
+     <enum>Qt::ScrollBarAlwaysOn</enum>
     </property>
     <property name="rowCount">
-     <number>8</number>
+     <number>5</number>
     </property>
     <property name="columnCount">
      <number>9</number>
@@ -751,9 +751,6 @@
     <attribute name="verticalHeaderMinimumSectionSize">
      <number>20</number>
     </attribute>
-    <row/>
-    <row/>
-    <row/>
     <row/>
     <row/>
     <row/>
@@ -844,7 +841,7 @@
      <enum>Qt::ScrollBarAlwaysOn</enum>
     </property>
     <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAsNeeded</enum>
+     <enum>Qt::ScrollBarAlwaysOn</enum>
     </property>
     <property name="rowCount">
      <number>5</number>
@@ -1030,8 +1027,11 @@
       <property name="inputMethodHints">
        <set>Qt::ImhDigitsOnly</set>
       </property>
+      <property name="text">
+       <string>0</string>
+      </property>
       <property name="maxLength">
-       <number>11</number>
+       <number>7</number>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1049,8 +1049,11 @@
       <property name="inputMethodHints">
        <set>Qt::ImhDigitsOnly</set>
       </property>
+      <property name="text">
+       <string>0</string>
+      </property>
       <property name="maxLength">
-       <number>11</number>
+       <number>9</number>
       </property>
       <property name="frame">
        <bool>true</bool>
@@ -1427,6 +1430,37 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>EditAcno</tabstop>
+  <tabstop>EditPswd</tabstop>
+  <tabstop>EditCode</tabstop>
+  <tabstop>CmbBns</tabstop>
+  <tabstop>EditPrc</tabstop>
+  <tabstop>EditQty</tabstop>
+  <tabstop>CmbCnd</tabstop>
+  <tabstop>BtnBuy</tabstop>
+  <tabstop>BtnSell</tabstop>
+  <tabstop>BtnPrc</tabstop>
+  <tabstop>BtnTrd</tabstop>
+  <tabstop>BtnPstn</tabstop>
+  <tabstop>EditCode_2</tabstop>
+  <tabstop>EditOOrdNo</tabstop>
+  <tabstop>EditPrc_2</tabstop>
+  <tabstop>EditQty_2</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>TablePrc</tabstop>
+  <tabstop>TxtBrErr</tabstop>
+  <tabstop>TxtBrLog</tabstop>
+  <tabstop>TableTick</tabstop>
+  <tabstop>TableTrd</tabstop>
+  <tabstop>TablePstn</tabstop>
+  <tabstop>TxtBrNm</tabstop>
+  <tabstop>TxtBrOrdNo</tabstop>
+  <tabstop>TxtBrNm_2</tabstop>
+  <tabstop>BtnMdfy</tabstop>
+  <tabstop>TxtBrOrdNo_2</tabstop>
+  <tabstop>BtnCncl</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

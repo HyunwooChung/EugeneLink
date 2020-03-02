@@ -23,7 +23,7 @@ class EugeneReal(object):
         iRtn = CLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_STK_PRC, sStdCode)
 
         if iRtn < 0:
-            sErrMsg = dic_setreal_error.get(iRtn)
+            sErrMsg = DIC_SETREAL_ERR.get(iRtn)
             sErrMsg = "우선호가 요청 : 오류 (" + sErrMsg + ")"
             self.ui.TxtBrLog.append(sErrMsg)
         else:
@@ -34,7 +34,7 @@ class EugeneReal(object):
         iRtn = CLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_STK_TICK, sStdCode)
 
         if iRtn < 0:
-            sErrMsg = dic_setreal_error.get(iRtn)
+            sErrMsg = DIC_SETREAL_ERR.get(iRtn)
             sErrMsg = "체결시세 요청 : 오류 (" + sErrMsg + ")"
             self.ui.TxtBrLog.append(sErrMsg)
         else:

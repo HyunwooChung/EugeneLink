@@ -1,14 +1,16 @@
 import sys
 import win32ui, win32gui, win32con, win32ts
 from ctypes import *
+from PyQt5 import uic
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
-from PyQt5 import uic
+from PyQt5.QtGui import QIntValidator
 from EugeneHd  import *
 from EugeneLib import *
 from EugeneOrd import *
 from EugeneQry import *
 from EugeneReal import *
+
 
 ui = uic.loadUiType("C:\\EugeneFN\\NewChampionLink\\EugeneWindow.ui")[0]
 
@@ -54,54 +56,47 @@ class MyWindow(QMainWindow, ui):
         self.EditAcno.setText("27111091101")
         self.EditPswd.setText("1357")
 
+
+    # 윈도우 form 셋팅
     def SetWindowForm(self):
-        # 우선호가 TableWidget 컬럼크기 셋팅
+        # 우선호가 TableWidget 컬럼 Height 셋팅
         iTblCnt = self.TablePrc.rowCount()
         for i in range(iTblCnt):
             self.TablePrc.setRowHeight(i, 20)
 
-        # 체결시세 TableWidget 컬럼크기 셋팅
+        # 체결시세 TableWidget 컬럼 Height 셋팅
         iTblCnt = self.TableTick.rowCount()
         for i in range(iTblCnt):
             self.TableTick.setRowHeight(i, 20)
 
-        # 주문/체결조회 TableWidget 컬럼크기 셋팅
+        # 주문/체결조회 TableWidget 컬럼 Height 셋팅
         iTblCnt = self.TableTrd.rowCount()
         for i in range(iTblCnt):
             self.TableTrd.setRowHeight(i, 20)
 
+        # 주문/체결조회 TableWidget 컬럼 Width 셋팅
         iTblCnt = self.TableTrd.columnCount()
         for i in range(iTblCnt):
-            self.TableTrd.setColumnWidth(i, tpl_TablePstn[i][0])
+            self.TableTrd.setColumnWidth(i, TPL_TRD_FORM[i][0])
 
-        '''
-        self.TableTrd.setColumnWidth( 0,  60)
-        self.TableTrd.setColumnWidth( 1,  60)
-        self.TableTrd.setColumnWidth( 2,  70)
-        self.TableTrd.setColumnWidth( 3, 120)
-        self.TableTrd.setColumnWidth( 4,  60)
-        self.TableTrd.setColumnWidth( 5,  70)
-        self.TableTrd.setColumnWidth( 6,  70)
-        self.TableTrd.setColumnWidth( 7,  90)
-        self.TableTrd.setColumnWidth( 8,  70)
-        self.TableTrd.setColumnWidth( 9,  70)
-        self.TableTrd.setColumnWidth(10,  90)
-        '''
-
-        # 잔고조회 TableWidget 컬럼크기 셋팅
+        # 잔고조회 TableWidget 컬럼 Height 셋팅
         iTblRow = self.TablePstn.rowCount()
         for i in range(iTblRow):
             self.TablePstn.setRowHeight(i, 20)
 
-        self.TablePstn.setColumnWidth( 0,  70)
-        self.TablePstn.setColumnWidth( 1, 120)
-        self.TablePstn.setColumnWidth( 2,  70)
-        self.TablePstn.setColumnWidth( 3,  70)
-        self.TablePstn.setColumnWidth( 4,  70)
-        self.TablePstn.setColumnWidth( 5,  90)
-        self.TablePstn.setColumnWidth( 6, 110)
-        self.TablePstn.setColumnWidth( 7, 110)
-        self.TablePstn.setColumnWidth( 8, 110)
+        # 잔고조회 TableWidget 컬럼 Width 셋팅
+        iTblCnt = self.TablePstn.columnCount()
+        for i in range(iTblCnt):
+            self.TablePstn.setColumnWidth(i, TPL_PSTN_FORM[i][0])
+
+        # 숫자만 입력 가능하도록 셋팅
+        self.EditCode.setValidator(QIntValidator())
+        self.EditCode_2.setValidator(QIntValidator())
+        self.EditPrc.setValidator(QIntValidator())
+        self.EditPrc_2.setValidator(QIntValidator())
+        self.EditQty.setValidator(QIntValidator())
+        self.EditQty_2.setValidator(QIntValidator())
+        self.EditOOrdNo.setValidator(QIntValidator())
 
 
     # 윈도우 컨트롤 셋팅
@@ -132,7 +127,7 @@ class MyWindow(QMainWindow, ui):
             elif msg == WM_EU_RQRP_ERR_RECV:
                 self.RecvRqRpErr(wParam, lParam)
             elif msg == WM_EU_NOTI_RECV:
-                pass
+                self.RecvNoti(wParam, lParam)
             elif msg == win32con.WM_DESTROY:
                 iRtn = CLib.OpCommAPI_UnInitialize()
                 if iRtn == 0:
@@ -180,6 +175,13 @@ class MyWindow(QMainWindow, ui):
     def RecvRqRpErr(self, wParam, lParam):
         print(wParam)
         print(lParam)
+        print(type(lParam))
+        #sVal = CLib.OpCommAPI_GetErrMsg()
+        #sVal = sVal.decode("cp949")
+        Qmessagebox
+
+    def RecvNoti(self, wParam, lParam):
+        pass
 
 
     # 실시간시세 버튼 클릭

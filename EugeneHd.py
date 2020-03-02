@@ -19,13 +19,13 @@ WM_EU_RQRP_RECV      = 7419 #WM_USER+6395
 # afx_msg long WM_EU_REAL_RECV(nRqRpSeqID, sErrMsg);
 # nRqRpSeqID : 수신한 조회 데이터 유일 Key 값 (OpCommAPI_SendRq return value)
 # sErrMsg    : 서버 오류 메세지
-WM_EU_RQRP_ERR_RECV	 = 7420 #WM_USER+6396
+WM_EU_RQRP_ERR_RECV  = 7420 #WM_USER+6396
 
 # 소켓이나 기타 공지 사항 수신시
 # afx_msg long WM_EU_REAL_RECV(NOTIID, sNotiMsg);
 # NOTIID     : 공지사항 종류
 # sNotiMsg   : 공지사항 메세지(NOTI_SERVER_NOTIFY 일때만 유효한 값)
-WM_EU_NOTI_RECV	     = 7421 #WM_USER+6397
+WM_EU_NOTI_RECV      = 7421 #WM_USER+6397
 
 # WM_EU_NOTI_RECV Notify Value
 dic_noti_error = \
@@ -35,7 +35,7 @@ dic_noti_error = \
     }
 
 # OpCommAPI_SendRq return Value
-dic_sendrq_error = \
+DIC_SENDRQ_ERR = \
     { -99 :  "Initialize 하지 않음"
     , -21 :  "존재하지 않는 RQRPID"
     , -22 :  "RQ데이터 부족"
@@ -58,7 +58,7 @@ dic_sendrq_error = \
     , -17 :  "인증서 오류" }
 
 # OpCommAPI_RequestReal return Value
-dic_setreal_error = \
+DIC_SETREAL_ERR = \
     { -99 :  "Initialize 하지 않음"
     ,  -1 :  "주문체결통보 설정시 본인 ID가 아님"
     }
@@ -73,18 +73,30 @@ RQRP_TRAN_STK_MDFY         = 602      # 주식 정정/취소 주문
 RQRP_TRAN_STK_TRD          = 653      # 주식 주문/체결 조회
 RQRP_TRAN_STK_PSTN         = 655      # 주식 잔고 조회
 
+# 주문/체결조회 TableWidget 컬럼 Form 정보
+TPL_TRD_FORM = \
+    (     ( 60, Qt.AlignRight )       # 주문번호
+        , ( 60, Qt.AlignRight )       # 원주문번호
+        , ( 70, Qt.AlignCenter)       # 종목코드
+        , (120, Qt.AlignLeft  )       # 종목명
+        , ( 60, Qt.AlignCenter)       # 주문구분
+        , ( 70, Qt.AlignCenter)       # 매매구분
+        , ( 70, Qt.AlignRight )       # 주문수량
+        , ( 90, Qt.AlignRight )       # 주문가격
+        , ( 70, Qt.AlignRight )       # 미체결잔량
+        , ( 70, Qt.AlignRight )       # 체결수량
+        , ( 90, Qt.AlignRight )       # 체결단가
+    )
 
-tpl_TablePstn = \
-    (
-          ( 60, Qt.AlignRight )
-        , ( 60, Qt.AlignRight )
-        , ( 70, Qt.AlignCenter)
-        , (120, Qt.AlignLeft  )
-        , ( 60, Qt.AlignCenter)
-        , ( 70, Qt.AlignCenter)
-        , ( 70, Qt.AlignRight )
-        , ( 90, Qt.AlignRight )
-        , ( 70, Qt.AlignRight )
-        , ( 70, Qt.AlignRight )
-        , ( 90, Qt.AlignRight )
+# 잔고조회 TableWidget 컬럼 Form 정보
+TPL_PSTN_FORM = \
+    (     ( 70, Qt.AlignCenter)       # 주문번호
+        , (120, Qt.AlignLeft  )       # 원주문번호
+        , ( 70, Qt.AlignRight )       # 종목코드
+        , ( 70, Qt.AlignRight )       # 종목명
+        , ( 70, Qt.AlignRight )       # 주문구분
+        , ( 90, Qt.AlignRight )       # 매매구분
+        , (110, Qt.AlignRight )       # 주문수량
+        , (110, Qt.AlignRight )       # 주문가격
+        , (110, Qt.AlignRight )       # 미체결잔량
     )
