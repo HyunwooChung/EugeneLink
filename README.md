@@ -9,11 +9,11 @@
 
 ## 파일설명
 * EugeneMain.py
-  * 
+  * 메인 
 * EugeneHd.py
   * 헤더 
 * EugeneLib.py
-  - 유진투자증권 API에서 제공하는 함수정의
+  * 유진투자증권 API에서 제공하는 함수정의
 * EugeneOrd.py
   * 주식 매도/매수 주문, 정정/취소 주문 전송처리
 * EugeneQry.py
