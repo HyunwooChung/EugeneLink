@@ -950,7 +950,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tabBuySell">
      <attribute name="title">
@@ -1267,7 +1267,7 @@
       <property name="geometry">
        <rect>
         <x>63</x>
-        <y>99</y>
+        <y>76</y>
         <width>70</width>
         <height>20</height>
        </rect>
@@ -1289,7 +1289,7 @@
       <property name="geometry">
        <rect>
         <x>63</x>
-        <y>76</y>
+        <y>53</y>
         <width>70</width>
         <height>20</height>
        </rect>
@@ -1340,7 +1340,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>80</y>
+        <y>57</y>
         <width>50</width>
         <height>12</height>
        </rect>
@@ -1353,7 +1353,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>103</y>
+        <y>80</y>
         <width>50</width>
         <height>12</height>
        </rect>
@@ -1412,92 +1412,6 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
-     </widget>
-     <widget class="QComboBox" name="CmbCnd_2">
-      <property name="geometry">
-       <rect>
-        <x>63</x>
-        <y>122</y>
-        <width>80</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>0 없음</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>1 IOC</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2 FOK</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="label_10">
-      <property name="geometry">
-       <rect>
-        <x>9</x>
-        <y>57</y>
-        <width>50</width>
-        <height>12</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>주문유형</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_15">
-      <property name="geometry">
-       <rect>
-        <x>9</x>
-        <y>126</y>
-        <width>50</width>
-        <height>12</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>주문조건</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="CmbBns_2">
-      <property name="geometry">
-       <rect>
-        <x>63</x>
-        <y>53</y>
-        <width>120</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>010 지정가</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>020 시장가</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>030 조건부지정가</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>040 최유리지정가</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>050 최우선지정가</string>
-       </property>
-      </item>
      </widget>
     </widget>
    </widget>

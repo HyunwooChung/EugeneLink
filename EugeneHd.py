@@ -63,11 +63,11 @@ DIC_SETREAL_ERR = \
     ,  -1 :  "주문체결통보 설정시 본인 ID가 아님"
     }
 
-# REAL TRAN
+# REAL TRAN ID
 REAL_TRAN_STK_PRC          =   1      # 주식 종목 우선호가
 REAL_TRAN_STK_TICK         =  21      # 주식 종목 체결시세
 
-# RQRP TRAN
+# RQRP TRAN ID
 RQRP_TRAN_STK_ORD          = 601      # 주식 매도/매수 주문
 RQRP_TRAN_STK_MDFY         = 602      # 주식 정정/취소 주문
 RQRP_TRAN_STK_TRD          = 653      # 주식 주문/체결 조회
@@ -101,6 +101,7 @@ TPL_PSTN_FORM = \
     , (110, Qt.AlignRight )       # 미체결잔량
     )
 
+# 주식 주문/체결 조회시 정정취소구분
 DIC_ORD_TCD = \
     { "10" :  "원주문"
     , "20" :  "정정"
@@ -109,6 +110,7 @@ DIC_ORD_TCD = \
     , "50" :  "일부취소"
     }
 
+# 주식 주문/체결 조회시 매매구분
 DIC_SELL_BUY_TCD = \
     { "0010" :  "현금매도"
     , "0020" :  "현금매수"

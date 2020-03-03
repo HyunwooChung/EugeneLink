@@ -104,14 +104,8 @@ class EugeneOrd(object):
         sVal = sVal.encode()
         CLib.OpCommAPI_SetRqData( 7, sVal)       # 주문가격
 
-        sVal = self.ui.CmbBns.currentText()
-        sVal = sVal[:3].encode()
-        CLib.OpCommAPI_SetRqData( 8, sVal)       # 매매구분코드 (010:지정가, 020:시장가:, 030:조건부, 040:최유리, 050:최우선)
-
-        sVal = self.ui.CmbCnd.currentText()
-        sVal = sVal[:1].encode()
-        CLib.OpCommAPI_SetRqData( 9, sVal)       # 주문조건코드 (0:없음, 1:IOC, 2:FOK)
-
+        CLib.OpCommAPI_SetRqData( 8, b"010")     # 매매구분코드 (010:지정가)
+        CLib.OpCommAPI_SetRqData( 9, b"0")       # 주문조건코드 (0:없음)
         CLib.OpCommAPI_SetRqData(10, b"0")       # 프로그램호가신고구분 (0 고정)
 
         self.Hwnd = win32ui.FindWindow(None, "MainWindow").GetSafeHwnd()
