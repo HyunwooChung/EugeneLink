@@ -70,10 +70,12 @@ class EugeneQry(object):
 
             sVal = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 8)      # 정정취소구분
             sVal = sVal.decode("cp949").strip()
+            sVal = DIC_ORD_TCD.get(sVal)
             self.ui.TableTrd.setItem(i, 4, QTableWidgetItem(sVal))
 
             sVal = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 9)      # 매매구분
             sVal = sVal.decode("cp949").strip()
+            sVal = DIC_SELL_BUY_TCD.get(sVal)
             self.ui.TableTrd.setItem(i, 5, QTableWidgetItem(sVal))
 
             sVal = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 11)     # 주문수량

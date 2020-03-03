@@ -70,7 +70,7 @@ class EugeneOrd(object):
 
     # 주식 정정/취소 주문 전송처리
     def SendStkMdfy(self, sOrdTp):
-        self.TxtBrErr.setText("")
+        self.ui.TxtBrErr.setText("")
         self.ui.TxtBrOrdNo_2.setText("")
 
         sVal = self.ui.EditAcno.text()

@@ -98,7 +98,7 @@ class MyWindow(QMainWindow, ui):
         self.EditQty_2.setValidator(QIntValidator())
         self.EditOOrdNo.setValidator(QIntValidator())
 
-        # 비밀번호 **** 처리
+        # 비밀번호 **** 마스킹 처리
         self.EditPswd.setEchoMode(QLineEdit.Password)
 
 
@@ -189,6 +189,7 @@ class MyWindow(QMainWindow, ui):
         sVal = string_at(lParam)
         sVal = sVal.decode("cp949")
         self.TxtBrErr.setText(sVal)
+
 
     # 서버에서 보내는 긴급 메시지
     def RecvNoti(self, wParam, lParam):
