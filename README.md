@@ -14,7 +14,7 @@
 * EugeneHd.py
   * 윈도우 메시지, 오류 메시지, TRAN ID, 구분값 정의  
 * EugeneLib.py
-  * 유진투자증권 API 함수정의
+  * 유진투자증권 챔피언 링크 API 함수정의
 * EugeneOrd.py
   * 주식 매도/매수 주문, 정정/취소 주문 전송처리
 * EugeneQry.py
