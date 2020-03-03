@@ -16,7 +16,7 @@
 * EugeneReal.py
 * EugeneWindow.ui
 
-## 주의사항
+## 유의사항
 * 유진투자증권에서 제공하는 API (OpCodeAPI.dll, OpCommAPI.dll) 2개만 가지고는 실행시 오류 발생  
   2개의 dll이 챔피언 링크의 다른 dll 파일을 참조하기 때문
 * 유진투자증권 챔피언 링크 설치 폴더(C:\EugeneFN\NewChampionLink)에 있는 모든 dll을 프로젝트 폴더에 복사하거나,  
