@@ -10,6 +10,8 @@
 ## 파일설명
 * EugeneMain.py
   * 메인 
+  * 윈도우 이벤트 수신처리
+  * 윈도우 폼 셋팅, 윈도우 컨트롤 셋팅
 * EugeneHd.py
   * 헤더 
 * EugeneLib.py
