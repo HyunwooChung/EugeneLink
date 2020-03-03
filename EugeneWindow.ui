@@ -43,9 +43,9 @@
    <widget class="QLineEdit" name="EditPswd">
     <property name="geometry">
      <rect>
-      <x>218</x>
+      <x>214</x>
       <y>3</y>
-      <width>51</width>
+      <width>55</width>
       <height>20</height>
      </rect>
     </property>
@@ -591,7 +591,7 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>167</x>
+      <x>163</x>
       <y>7</y>
       <width>48</width>
       <height>12</height>
@@ -665,7 +665,7 @@
     </column>
     <column>
      <property name="text">
-      <string>누적량</string>
+      <string>체결강도</string>
      </property>
     </column>
     <item row="0" column="0">
@@ -682,26 +682,41 @@
      </property>
     </item>
     <item row="1" column="1">
+     <property name="text">
+      <string/>
+     </property>
      <property name="textAlignment">
       <set>AlignTrailing|AlignVCenter</set>
      </property>
     </item>
     <item row="1" column="2">
+     <property name="text">
+      <string/>
+     </property>
      <property name="textAlignment">
       <set>AlignTrailing|AlignVCenter</set>
      </property>
     </item>
     <item row="1" column="3">
+     <property name="text">
+      <string/>
+     </property>
      <property name="textAlignment">
       <set>AlignTrailing|AlignVCenter</set>
      </property>
     </item>
     <item row="1" column="4">
+     <property name="text">
+      <string/>
+     </property>
      <property name="textAlignment">
       <set>AlignJustify|AlignVCenter</set>
      </property>
     </item>
     <item row="2" column="3">
+     <property name="text">
+      <string/>
+     </property>
      <property name="textAlignment">
       <set>AlignTrailing|AlignVCenter</set>
      </property>
@@ -891,7 +906,7 @@
     </column>
     <column>
      <property name="text">
-      <string>주문유형</string>
+      <string>주문구분</string>
      </property>
     </column>
     <column>
@@ -929,13 +944,13 @@
     <property name="geometry">
      <rect>
       <x>4</x>
-      <y>27</y>
+      <y>28</y>
       <width>274</width>
       <height>222</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tabBuySell">
      <attribute name="title">
@@ -945,7 +960,7 @@
       <property name="geometry">
        <rect>
         <x>63</x>
-        <y>33</y>
+        <y>30</y>
         <width>120</width>
         <height>20</height>
        </rect>
@@ -980,7 +995,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>106</y>
+        <y>103</y>
         <width>50</width>
         <height>12</height>
        </rect>
@@ -993,7 +1008,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>60</y>
+        <y>57</y>
         <width>50</width>
         <height>12</height>
        </rect>
@@ -1006,7 +1021,7 @@
       <property name="geometry">
        <rect>
         <x>63</x>
-        <y>10</y>
+        <y>7</y>
         <width>70</width>
         <height>20</height>
        </rect>
@@ -1019,7 +1034,7 @@
       <property name="geometry">
        <rect>
         <x>63</x>
-        <y>79</y>
+        <y>76</y>
         <width>70</width>
         <height>20</height>
        </rect>
@@ -1041,7 +1056,7 @@
       <property name="geometry">
        <rect>
         <x>63</x>
-        <y>56</y>
+        <y>53</y>
         <width>70</width>
         <height>20</height>
        </rect>
@@ -1066,7 +1081,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>37</y>
+        <y>34</y>
         <width>50</width>
         <height>12</height>
        </rect>
@@ -1079,7 +1094,7 @@
       <property name="geometry">
        <rect>
         <x>63</x>
-        <y>102</y>
+        <y>99</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -1104,7 +1119,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>83</y>
+        <y>80</y>
         <width>50</width>
         <height>12</height>
        </rect>
@@ -1117,7 +1132,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>15</y>
+        <y>12</y>
         <width>50</width>
         <height>12</height>
        </rect>
@@ -1156,7 +1171,7 @@
       <property name="geometry">
        <rect>
         <x>134</x>
-        <y>10</y>
+        <y>7</y>
         <width>120</width>
         <height>20</height>
        </rect>
@@ -1226,7 +1241,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>15</y>
+        <y>12</y>
         <width>50</width>
         <height>12</height>
        </rect>
@@ -1239,7 +1254,7 @@
       <property name="geometry">
        <rect>
         <x>63</x>
-        <y>10</y>
+        <y>7</y>
         <width>70</width>
         <height>20</height>
        </rect>
@@ -1252,13 +1267,16 @@
       <property name="geometry">
        <rect>
         <x>63</x>
-        <y>79</y>
+        <y>99</y>
         <width>70</width>
         <height>20</height>
        </rect>
       </property>
       <property name="inputMethodHints">
        <set>Qt::ImhDigitsOnly</set>
+      </property>
+      <property name="text">
+       <string>0</string>
       </property>
       <property name="maxLength">
        <number>11</number>
@@ -1271,13 +1289,16 @@
       <property name="geometry">
        <rect>
         <x>63</x>
-        <y>56</y>
+        <y>76</y>
         <width>70</width>
         <height>20</height>
        </rect>
       </property>
       <property name="inputMethodHints">
        <set>Qt::ImhDigitsOnly</set>
+      </property>
+      <property name="text">
+       <string>0</string>
       </property>
       <property name="maxLength">
        <number>11</number>
@@ -1293,7 +1314,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>37</y>
+        <y>34</y>
         <width>50</width>
         <height>12</height>
        </rect>
@@ -1319,7 +1340,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>60</y>
+        <y>80</y>
         <width>50</width>
         <height>12</height>
        </rect>
@@ -1332,7 +1353,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>83</y>
+        <y>103</y>
         <width>50</width>
         <height>12</height>
        </rect>
@@ -1358,7 +1379,7 @@
       <property name="geometry">
        <rect>
         <x>134</x>
-        <y>10</y>
+        <y>7</y>
         <width>120</width>
         <height>20</height>
        </rect>
@@ -1371,13 +1392,16 @@
       <property name="geometry">
        <rect>
         <x>63</x>
-        <y>33</y>
+        <y>30</y>
         <width>70</width>
         <height>20</height>
        </rect>
       </property>
       <property name="inputMethodHints">
        <set>Qt::ImhDigitsOnly</set>
+      </property>
+      <property name="text">
+       <string>0</string>
       </property>
       <property name="maxLength">
        <number>11</number>
@@ -1388,6 +1412,92 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+     </widget>
+     <widget class="QComboBox" name="CmbCnd_2">
+      <property name="geometry">
+       <rect>
+        <x>63</x>
+        <y>122</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>0 없음</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1 IOC</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2 FOK</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>57</y>
+        <width>50</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>주문유형</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>126</y>
+        <width>50</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>주문조건</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="CmbBns_2">
+      <property name="geometry">
+       <rect>
+        <x>63</x>
+        <y>53</y>
+        <width>120</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>010 지정가</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>020 시장가</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>030 조건부지정가</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>040 최유리지정가</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>050 최우선지정가</string>
+       </property>
+      </item>
      </widget>
     </widget>
    </widget>
