@@ -9,11 +9,11 @@
 
 ## 파일설명
 * EugeneMain.py
-  
-* EugeneHd.py
   * 
+* EugeneHd.py
+  * 헤더 
 * EugeneLib.py
-  * 유진투자증권 API에서 제공하는 함수정의
+  - 유진투자증권 API에서 제공하는 함수정의
 * EugeneOrd.py
   * 주식 매도/매수 주문, 정정/취소 주문 전송처리
 * EugeneQry.py
@@ -28,3 +28,7 @@
   2개의 dll이 챔피언 링크의 다른 dll 파일을 참조하기 때문
 * 유진투자증권 챔피언 링크 설치 폴더(C:\EugeneFN\NewChampionLink)에 있는 모든 dll을 프로젝트 폴더에 복사하거나,  
   챔피언 링크 설치폴더에 파이썬 소스파일을 만들어서 실행 해야됨
+  
+## 참조
+* 해당 소스는 GitHub 에 업로드 되어 있습니다.
+* https://github.com/HyunwooChung/EugeneLink/
