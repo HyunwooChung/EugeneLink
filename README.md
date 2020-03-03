@@ -9,12 +9,19 @@
 
 ## 파일설명
 * EugeneMain.py
+  
 * EugeneHd.py
+  * 
 * EugeneLib.py
+  * 유진투자증권 API에서 제공하는 함수정의
 * EugeneOrd.py
+  * 주식 매도/매수 주문, 정정/취소 주문 전송처리
 * EugeneQry.py
+  * 주식 주문/체결내역, 주식 잔고내역 조회요청 및 수신처리
 * EugeneReal.py
+  * 주식 호가시세, 체결시세 요청 및 실시간 수신처리
 * EugeneWindow.ui
+  * 화면 UI (Qt Designer 사용)
 
 ## 유의사항
 * 유진투자증권에서 제공하는 API (OpCodeAPI.dll, OpCommAPI.dll) 2개만 가지고는 실행시 오류 발생  
