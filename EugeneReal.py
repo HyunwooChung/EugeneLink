@@ -1,6 +1,7 @@
 import win32ui
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
+from PyQt5 import QtGui
 from EugeneHd import *
 from EugeneLib import *
 
@@ -48,94 +49,94 @@ class EugeneReal(object):
         lstSell = []
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 30)  # 매도5호가변화량
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 28)  # 매도5호가잔량
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 26)  # 매도5호가
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 24)  # 매도4호가변화량
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 22)  # 매도4호가잔량
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 20)  # 매도4호가
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 18)  # 매도3호가변화량
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 16)  # 매도3호가잔량
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 14)  # 매도3호가
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 12)  # 매도2호가변화량
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 10)  # 매도2호가잔량
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  8)  # 매도2호가
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  6)  # 매도1호가변화량
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  4)  # 매도1호가잔량
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  2)  # 매도1호가
-        lstSell.append(sVal.decode("cp949"))
+        lstSell.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  3)  # 매수1호가
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  5)  # 매수1호가잔량
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  7)  # 매수1호가변화량
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  9)  # 매수2호가
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 11)  # 매수2호가잔량
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 13)  # 매수2호가변화량
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 15)  # 매수3호가
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 17)  # 매수3호가잔량
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 19)  # 매수3호가변화량
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 21)  # 매수4호가
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 23)  # 매수4호가잔량
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 25)  # 매수4호가변화량
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 27)  # 매수5호가
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 29)  # 매수5호가잔량
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 31)  # 매수5호가변화량
-        lstBuy.append(sVal.decode("cp949"))
+        lstBuy.append(sVal.decode("cp949").strip())
 
         # 매도1~5호가 셋팅
         for i in range(0, 5):
@@ -146,10 +147,15 @@ class EugeneReal(object):
             sVal = lstSell[(i * 3) + 2]
             self.ui.TablePrc.setItem(i, 2, QTableWidgetItem(sVal))
 
-            # 컬럼 정렬
+            # 컬럼 정렬 셋팅
             self.ui.TablePrc.item(i, 0).setTextAlignment(Qt.AlignRight)
             self.ui.TablePrc.item(i, 1).setTextAlignment(Qt.AlignRight)
             self.ui.TablePrc.item(i, 2).setTextAlignment(Qt.AlignRight)
+
+            # 컬럼 색상 셋팅
+            self.ui.TablePrc.item(i, 0).setBackground(QtGui.QColor(207, 229, 255))
+            self.ui.TablePrc.item(i, 1).setBackground(QtGui.QColor(207, 229, 255))
+            self.ui.TablePrc.item(i, 2).setBackground(QtGui.QColor(207, 229, 255))
 
         # 매수 1~5호가 셋팅
         for i in range(0, 5):
@@ -160,29 +166,40 @@ class EugeneReal(object):
             sVal = lstBuy[(i * 3) + 2]
             self.ui.TablePrc.setItem(i + 5, 4, QTableWidgetItem(sVal))
 
-            # 컬럼 정렬
+            # 컬럼 정렬 셋팅
             self.ui.TablePrc.item(i + 5, 2).setTextAlignment(Qt.AlignRight)
             self.ui.TablePrc.item(i + 5, 3).setTextAlignment(Qt.AlignRight)
             self.ui.TablePrc.item(i + 5, 4).setTextAlignment(Qt.AlignRight)
+
+            # 컬럼 색상 셋팅
+            self.ui.TablePrc.item(i + 5, 2).setBackground(QtGui.QColor(255, 221, 207))
+            self.ui.TablePrc.item(i + 5, 3).setBackground(QtGui.QColor(255, 221, 207))
+            self.ui.TablePrc.item(i + 5, 4).setBackground(QtGui.QColor(255, 221, 207))
 
 
     # 실시간 주식 체결시세 수신처리
     def RecvRealStkTick(self, wParam, lParam):
         lstTick = []
         sVal = CLib.OpCommAPI_GetRealData(wParam,  1)  # 체결시각
-        lstTick.append(sVal.decode("cp949"))
+        sVal = sVal.decode("cp949").strip()
+        sVal = sVal[0:2] + ":" + sVal[2:4] + ":" + sVal[4:6]
+        lstTick.append(sVal)
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  4)  # 체결가
-        lstTick.append(sVal.decode("cp949"))
+        lstTick.append(sVal.decode("cp949").strip())
 
         sVal = CLib.OpCommAPI_GetRealData(wParam,  2)  # 전일대비
-        lstTick.append(sVal.decode("cp949"))
+        sVal = sVal.decode("cp949").strip()
+        sVal = "%+0d" % int(sVal)
+        lstTick.append(sVal)
 
         sVal = CLib.OpCommAPI_GetRealData(wParam, 14)  # 체결량
-        lstTick.append(sVal.decode("cp949"))
+        lstTick.append(sVal.decode("cp949").strip())
 
-        sVal = CLib.OpCommAPI_GetRealData(wParam, 15)  # 누적거래량
-        lstTick.append(sVal.decode("cp949"))
+        sVal = CLib.OpCommAPI_GetRealData(wParam, 29)  # 체결강도
+        sVal = sVal.decode("cp949").strip()
+        sVal = "%0.2f" % (float(sVal) / 100)
+        lstTick.append(sVal + "%")
 
         MAX_ROW = 20
         iRow = self.ui.TableTrd.rowCount()
@@ -192,13 +209,14 @@ class EugeneReal(object):
             self.ui.TableTick.removeRow(MAX_ROW)
 
         self.ui.TableTick.insertRow(0)
+        self.ui.TableTick.setRowHeight(0, 20)
 
         for i in range(len(lstTick)):
             self.ui.TableTick.setItem(0, i, QTableWidgetItem(lstTick[i]))
 
-        # 컬럼 정렬
+        # 컬럼 정렬 셋팅
         self.ui.TableTick.item(0, 0).setTextAlignment(Qt.AlignCenter)
         self.ui.TableTick.item(0, 1).setTextAlignment(Qt.AlignRight)
+        self.ui.TableTick.item(0, 2).setTextAlignment(Qt.AlignRight)
         self.ui.TableTick.item(0, 3).setTextAlignment(Qt.AlignRight)
         self.ui.TableTick.item(0, 4).setTextAlignment(Qt.AlignRight)
-        self.ui.TableTick.item(0, 5).setTextAlignment(Qt.AlignRight)

@@ -50,6 +50,7 @@ class EugeneQry(object):
         for i in range(iCnt):
             if i >= self.ui.TableTrd.rowCount():
                 self.ui.TableTrd.insertRow(i)
+                self.ui.TableTrd.setRowHeight(i, 20)
 
             sVal = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 4)      # 주문번호
             sVal = sVal.decode("cp949").strip()
@@ -144,6 +145,7 @@ class EugeneQry(object):
         for i in range(iCnt):
             if i >= self.ui.TablePstn.rowCount():
                 self.ui.TablePstn.insertRow(i)
+                self.ui.TablePstn.setRowHeight(i, 20)
 
             sVal = CLib.OpCommAPI_GetRqrpData(iRqRpID, 1, i, 0)      # 종목코드
             sVal = sVal.decode("cp949").strip()

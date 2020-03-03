@@ -28,7 +28,7 @@ WM_EU_RQRP_ERR_RECV  = 7420 #WM_USER+6396
 WM_EU_NOTI_RECV      = 7421 #WM_USER+6397
 
 # WM_EU_NOTI_RECV Notify Value
-dic_noti_error = \
+DIC_NOTI_MSG = \
     {  50 :  "다중접속에 의한 접속 해제"
     ,  51 :  "통신 단절"
     , 100 :  "서버에서 내려온 긴급 메세지"
@@ -73,7 +73,7 @@ RQRP_TRAN_STK_MDFY         = 602      # 주식 정정/취소 주문
 RQRP_TRAN_STK_TRD          = 653      # 주식 주문/체결 조회
 RQRP_TRAN_STK_PSTN         = 655      # 주식 잔고 조회
 
-# 주문/체결조회 TableWidget 컬럼 Form 정보
+# 주문/체결조회 QTableWidget 컬럼 Form 정보
 TPL_TRD_FORM = \
     (     ( 60, Qt.AlignRight )       # 주문번호
         , ( 60, Qt.AlignRight )       # 원주문번호
@@ -88,7 +88,7 @@ TPL_TRD_FORM = \
         , ( 90, Qt.AlignRight )       # 체결단가
     )
 
-# 잔고조회 TableWidget 컬럼 Form 정보
+# 잔고조회 QTableWidget 컬럼 Form 정보
 TPL_PSTN_FORM = \
     (     ( 70, Qt.AlignCenter)       # 주문번호
         , (120, Qt.AlignLeft  )       # 원주문번호

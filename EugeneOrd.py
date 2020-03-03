@@ -10,6 +10,7 @@ class EugeneOrd(object):
 
     # 주식 매도/매수 주문 전송처리
     def SendStkOrd(self, sOrdTp):
+        self.ui.TxtBrErr.setText("")
         self.ui.TxtBrOrdNo.setText("")
 
         sVal = self.ui.EditAcno.text()
@@ -69,6 +70,7 @@ class EugeneOrd(object):
 
     # 주식 정정/취소 주문 전송처리
     def SendStkMdfy(self, sOrdTp):
+        self.TxtBrErr.setText("")
         self.ui.TxtBrOrdNo_2.setText("")
 
         sVal = self.ui.EditAcno.text()
@@ -127,10 +129,11 @@ class EugeneOrd(object):
     def RecvStkOrd(self, wParam, lParam, iRqRpID):
         sVal = CLib.OpCommAPI_GetRqrpData(iRqRpID, 0, 0, 0)
         self.ui.TxtBrOrdNo.setText(sVal.decode("cp949"))
+        self.ui.TxtBrErr.setText("주문 처리되었습니다.")
 
 
     # 주식 정정/취소 주문 응답처리
     def RecvStkMdfy(self, wParam, lParam, iRqRpID):
         sVal = CLib.OpCommAPI_GetRqrpData(iRqRpID, 0, 0, 0)
         self.ui.TxtBrOrdNo_2.setText(sVal.decode("cp949"))
-
+        self.ui.TxtBrErr.setText("주문 처리되었습니다.")
