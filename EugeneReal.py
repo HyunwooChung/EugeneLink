@@ -1,4 +1,3 @@
-import win32ui
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
 from PyQt5 import QtGui
@@ -9,6 +8,7 @@ from EugeneLib import *
 class EugeneReal(object):
     def __init__(self, QMainWindow):
         self.ui = QMainWindow
+        self.bReal = False
 
     # 실시간 주식시세 요청
     def ReqRealStkPrc(self):
@@ -18,10 +18,23 @@ class EugeneReal(object):
         # 표준종목코드로 변환하여 조회
         sStdCode = CLib.OpCodeAPI_GetExpCode(sCode)
 
-        self.Hwnd = win32ui.FindWindow(None, "MainWindow").GetSafeHwnd()
+        # 실시간 시세 수신중이면, 수신 해제처리
+        if self.bReal == True:
+            # 실시간 주식 우선호가 해제
+            CLib.OpCommAPI_RequestReal(self.ui.winId(), False, REAL_TRAN_STK_PRC, sStdCode)
 
-        # 주식 우선호가 요청
-        iRtn = CLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_STK_PRC, sStdCode)
+            # 실시간 주식 체결시세 해제
+            CLib.OpCommAPI_RequestReal(self.ui.winId(), False, REAL_TRAN_STK_TICK, sStdCode)
+
+            self.bReal = False
+            self.ui.BtnPrc.setText("실시간 시세")
+
+            sErrMsg = "실시간 시세 해제"
+            self.ui.TxtBrLog.append(sErrMsg)
+            return
+
+        # 실시간 주식 우선호가 요청
+        iRtn = CLib.OpCommAPI_RequestReal(self.ui.winId(), True, REAL_TRAN_STK_PRC, sStdCode)
 
         if iRtn < 0:
             sErrMsg = DIC_SETREAL_ERR.get(iRtn)
@@ -31,14 +44,17 @@ class EugeneReal(object):
             sErrMsg = "우선호가 요청 : 성공"
             self.ui.TxtBrLog.append(sErrMsg)
 
-        # 주식 체결시세 요청
-        iRtn = CLib.OpCommAPI_RequestReal(self.Hwnd, True, REAL_TRAN_STK_TICK, sStdCode)
+        # 실시간 주식 체결시세 요청
+        iRtn = CLib.OpCommAPI_RequestReal(self.ui.winId(), True, REAL_TRAN_STK_TICK, sStdCode)
 
         if iRtn < 0:
             sErrMsg = DIC_SETREAL_ERR.get(iRtn)
             sErrMsg = "체결시세 요청 : 오류 (" + sErrMsg + ")"
             self.ui.TxtBrLog.append(sErrMsg)
         else:
+            self.bReal = True
+            self.ui.BtnPrc.setText("시세 중단")
+
             sErrMsg = "체결시세 요청 : 성공"
             self.ui.TxtBrLog.append(sErrMsg)
 
@@ -148,9 +164,9 @@ class EugeneReal(object):
             self.ui.TablePrc.setItem(i, 2, QTableWidgetItem(sVal))
 
             # 컬럼 정렬 셋팅
-            self.ui.TablePrc.item(i, 0).setTextAlignment(Qt.AlignRight)
-            self.ui.TablePrc.item(i, 1).setTextAlignment(Qt.AlignRight)
-            self.ui.TablePrc.item(i, 2).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePrc.item(i, 0).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            self.ui.TablePrc.item(i, 1).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            self.ui.TablePrc.item(i, 2).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
 
             # 컬럼 색상 셋팅
             self.ui.TablePrc.item(i, 0).setBackground(QtGui.QColor(207, 229, 255))
@@ -167,9 +183,9 @@ class EugeneReal(object):
             self.ui.TablePrc.setItem(i + 5, 4, QTableWidgetItem(sVal))
 
             # 컬럼 정렬 셋팅
-            self.ui.TablePrc.item(i + 5, 2).setTextAlignment(Qt.AlignRight)
-            self.ui.TablePrc.item(i + 5, 3).setTextAlignment(Qt.AlignRight)
-            self.ui.TablePrc.item(i + 5, 4).setTextAlignment(Qt.AlignRight)
+            self.ui.TablePrc.item(i + 5, 2).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            self.ui.TablePrc.item(i + 5, 3).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            self.ui.TablePrc.item(i + 5, 4).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
 
             # 컬럼 색상 셋팅
             self.ui.TablePrc.item(i + 5, 2).setBackground(QtGui.QColor(255, 221, 207))
@@ -215,8 +231,8 @@ class EugeneReal(object):
             self.ui.TableTick.setItem(0, i, QTableWidgetItem(lstTick[i]))
 
         # 컬럼 정렬 셋팅
-        self.ui.TableTick.item(0, 0).setTextAlignment(Qt.AlignCenter)
-        self.ui.TableTick.item(0, 1).setTextAlignment(Qt.AlignRight)
-        self.ui.TableTick.item(0, 2).setTextAlignment(Qt.AlignRight)
-        self.ui.TableTick.item(0, 3).setTextAlignment(Qt.AlignRight)
-        self.ui.TableTick.item(0, 4).setTextAlignment(Qt.AlignRight)
+        self.ui.TableTick.item(0, 0).setTextAlignment(Qt.AlignCenter|Qt.AlignVCenter)
+        self.ui.TableTick.item(0, 1).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+        self.ui.TableTick.item(0, 2).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+        self.ui.TableTick.item(0, 3).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+        self.ui.TableTick.item(0, 4).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)

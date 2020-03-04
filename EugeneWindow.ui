@@ -842,6 +842,9 @@
     <property name="text">
      <string>실시간 시세</string>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QTableWidget" name="TableTrd">
     <property name="geometry">

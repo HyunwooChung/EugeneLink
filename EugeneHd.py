@@ -75,30 +75,30 @@ RQRP_TRAN_STK_PSTN         = 655      # 주식 잔고 조회
 
 # 주문/체결조회 QTableWidget 컬럼 Form 정보
 TPL_TRD_FORM = \
-    ( ( 60, Qt.AlignRight )       # 주문번호
-    , ( 60, Qt.AlignRight )       # 원주문번호
-    , ( 70, Qt.AlignCenter)       # 종목코드
-    , (120, Qt.AlignLeft  )       # 종목명
-    , ( 60, Qt.AlignCenter)       # 주문구분
-    , ( 70, Qt.AlignCenter)       # 매매구분
-    , ( 70, Qt.AlignRight )       # 주문수량
-    , ( 90, Qt.AlignRight )       # 주문가격
-    , ( 70, Qt.AlignRight )       # 미체결잔량
-    , ( 70, Qt.AlignRight )       # 체결수량
-    , ( 90, Qt.AlignRight )       # 체결단가
+    ( ( 60, Qt.AlignRight|Qt.AlignVCenter)     # 주문번호
+    , ( 60, Qt.AlignRight|Qt.AlignVCenter)     # 원주문번호
+    , ( 70, Qt.AlignCenter|Qt.AlignVCenter)    # 종목코드
+    , (120, Qt.AlignLeft|Qt.AlignVCenter)      # 종목명
+    , ( 60, Qt.AlignCenter|Qt.AlignVCenter)    # 주문구분
+    , ( 70, Qt.AlignCenter|Qt.AlignVCenter)    # 매매구분
+    , ( 70, Qt.AlignRight|Qt.AlignVCenter)     # 주문수량
+    , ( 90, Qt.AlignRight|Qt.AlignVCenter)     # 주문가격
+    , ( 70, Qt.AlignRight|Qt.AlignVCenter)     # 미체결잔량
+    , ( 70, Qt.AlignRight|Qt.AlignVCenter)     # 체결수량
+    , ( 90, Qt.AlignRight|Qt.AlignVCenter)     # 체결단가
     )
 
 # 잔고조회 QTableWidget 컬럼 Form 정보
 TPL_PSTN_FORM = \
-    ( ( 70, Qt.AlignCenter)       # 주문번호
-    , (120, Qt.AlignLeft  )       # 원주문번호
-    , ( 70, Qt.AlignRight )       # 종목코드
-    , ( 70, Qt.AlignRight )       # 종목명
-    , ( 70, Qt.AlignRight )       # 주문구분
-    , ( 90, Qt.AlignRight )       # 매매구분
-    , (110, Qt.AlignRight )       # 주문수량
-    , (110, Qt.AlignRight )       # 주문가격
-    , (110, Qt.AlignRight )       # 미체결잔량
+    ( ( 70, Qt.AlignCenter|Qt.AlignVCenter)     # 주문번호
+    , (120, Qt.AlignLeft  |Qt.AlignVCenter)     # 원주문번호
+    , ( 70, Qt.AlignRight |Qt.AlignVCenter)     # 종목코드
+    , ( 70, Qt.AlignRight |Qt.AlignVCenter)     # 종목명
+    , ( 70, Qt.AlignRight |Qt.AlignVCenter)     # 주문구분
+    , ( 90, Qt.AlignRight |Qt.AlignVCenter)     # 매매구분
+    , (110, Qt.AlignRight |Qt.AlignVCenter)     # 주문수량
+    , (110, Qt.AlignRight |Qt.AlignVCenter)     # 주문가격
+    , (110, Qt.AlignRight |Qt.AlignVCenter)     # 미체결잔량
     )
 
 # 주식 주문/체결 조회시 정정취소구분

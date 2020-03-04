@@ -1,5 +1,5 @@
 import sys
-import win32ui, win32gui, win32con, win32ts
+import win32gui, win32con, win32ts
 from ctypes import *
 from PyQt5 import uic
 from PyQt5.QtWidgets import *
@@ -11,7 +11,6 @@ from EugeneOrd import *
 from EugeneQry import *
 from EugeneReal import *
 
-
 ui = uic.loadUiType("C:\\EugeneFN\\NewChampionLink\\EugeneWindow.ui")[0]
 
 class MyWindow(QMainWindow, ui):
@@ -21,13 +20,6 @@ class MyWindow(QMainWindow, ui):
 
         # 윈도우 이벤트 수신처리
         self.WindowEvent(self.winId())
-
-        # 윈도우핸들러
-        # 유진 Library 호출시 필요
-        self.Hwnd = win32ui.FindWindow(None, "MainWindow").GetSafeHwnd()
-        sMsg = "윈도우핸들러 : " + str(self.Hwnd)
-        self.TxtBrLog.append(sMsg)
-        print(sMsg)
 
         # 윈도우폼 셋팅
         self.SetWindowForm()
@@ -44,7 +36,8 @@ class MyWindow(QMainWindow, ui):
         # RQRP 조회 인스턴스 생성
         self.CQry = EugeneQry(self)
 
-        iRtn = CLib.OpCommAPI_Initialize(self.Hwnd)
+        # 초기화
+        iRtn = CLib.OpCommAPI_Initialize(self.winId())
 
         if iRtn == 0:
             self.TxtBrLog.append("서버접속 : 실패")
@@ -115,7 +108,7 @@ class MyWindow(QMainWindow, ui):
         self.CmbBns.currentIndexChanged.connect(self.CmbBnsChanged)
 
 
-    # 유진 API 윈도우 이벤트 수신처리
+    # 유진투자증권 API 윈도우 이벤트 수신처리
     # PyQt 사용시 일반적인 윈도우 이벤트 수신처리 방법을 모르겠음
     # 해당방법으로 정상 작동은 함
     def WindowEvent(self, app_hwnd):
@@ -136,13 +129,15 @@ class MyWindow(QMainWindow, ui):
             elif msg == WM_EU_NOTI_RECV:
                 self.RecvNoti(wParam, lParam)
             elif msg == win32con.WM_DESTROY:
+                # 해당 윈도우의 모든 실시간 데이터 해제
+                CLib.OpCommAPI_UnRegisterRealAll(self.winId())
+
+                # 초기화 해제
                 iRtn = CLib.OpCommAPI_UnInitialize()
                 if iRtn == 0:
                     self.TxtBrLog.append("서버종료 : 실패")
                 else:
                     self.TxtBrLog.append("서버종료 : 성공")
-
-                CLib.OpCommAPI_UnRegisterRealAll(self.Hwnd)
 
                 win32gui.DestroyWindow(app_hwnd)
                 win32gui.PostQuitMessage(0)
@@ -180,6 +175,7 @@ class MyWindow(QMainWindow, ui):
         elif wParam == self.iRqRpID and self.RQRP_TRAN_ID == RQRP_TRAN_STK_PSTN:
             self.CQry.RecvStkPstn(wParam, lParam, self.iRqRpID)
 
+        # 조회 데이터 INPUT값 전체삭제
         CLib.OpCommAPI_ClearRQData()
 
 

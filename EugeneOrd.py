@@ -1,4 +1,3 @@
-import win32ui
 from PyQt5.QtWidgets import *
 from EugeneHd import *
 from EugeneLib import *
@@ -57,8 +56,8 @@ class EugeneOrd(object):
         CLib.OpCommAPI_SetRqData(22, b"N")       # 공매도가능여부 (N 고정)
         CLib.OpCommAPI_SetRqData(23, b"00")      # 공매도구분 (00 고정)
 
-        self.Hwnd = win32ui.FindWindow(None, "MainWindow").GetSafeHwnd()
-        iRtn = CLib.OpCommAPI_SendRq(self.Hwnd, RQRP_TRAN_STK_ORD, 0)
+        # 조회 데이터 전송
+        iRtn = CLib.OpCommAPI_SendRq(self.ui.winId(), RQRP_TRAN_STK_ORD, 0)
 
         if iRtn < 0:
             sErrMsg = DIC_SENDRQ_ERR.get(iRtn)
@@ -104,12 +103,12 @@ class EugeneOrd(object):
         sVal = sVal.encode()
         CLib.OpCommAPI_SetRqData( 7, sVal)       # 주문가격
 
-        CLib.OpCommAPI_SetRqData( 8, b"010")     # 매매구분코드 (010:지정가)
-        CLib.OpCommAPI_SetRqData( 9, b"0")       # 주문조건코드 (0:없음)
+        CLib.OpCommAPI_SetRqData( 8, b"010")     # 매매구분코드 (010:지정가, 020:시장가:, 030:조건부, 040:최유리, 050:최우선)
+        CLib.OpCommAPI_SetRqData( 9, b"0")       # 주문조건코드 (0:없음, 1:IOC, 2:FOK)
         CLib.OpCommAPI_SetRqData(10, b"0")       # 프로그램호가신고구분 (0 고정)
 
-        self.Hwnd = win32ui.FindWindow(None, "MainWindow").GetSafeHwnd()
-        iRtn = CLib.OpCommAPI_SendRq(self.Hwnd, RQRP_TRAN_STK_MDFY, 0)
+        # 조회 데이터 전송
+        iRtn = CLib.OpCommAPI_SendRq(self.ui.winId(), RQRP_TRAN_STK_MDFY, 0)
 
         if iRtn < 0:
             sErrMsg = DIC_SENDRQ_ERR.get(iRtn)
