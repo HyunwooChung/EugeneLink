@@ -34,7 +34,7 @@
 * 테스트 로그인 비밀번호, 계좌번호의 비밀번호는 1357
 
 ## 자주하는 질문
-* 
+* 이슈 링크 : <https://github.com/HyunwooChung/EugeneLink/issues/1>
   
 ## 참조
 * 해당 소스는 깃허브에 업로드 되어 있습니다.
