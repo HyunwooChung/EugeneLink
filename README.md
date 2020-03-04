@@ -31,7 +31,6 @@
   2개의 dll이 챔피언 링크의 다른 dll 파일을 참조하기 때문  
   유진투자증권 챔피언 링크 설치 폴더(C:\EugeneFN\NewChampionLink)에 있는 모든 dll을 개발 폴더에 복사하거나,  
   챔피언 링크 설치폴더에 파이썬 소스파일을 만들어서 실행 해야됨.
-* 테스트 로그인 비밀번호, 계좌번호의 비밀번호는 1357
 
 ## 자주하는 질문
 * 이슈 링크 : <https://github.com/HyunwooChung/EugeneLink/issues/1>
