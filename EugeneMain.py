@@ -46,7 +46,7 @@ class MyWindow(QMainWindow, ui):
 
         # 디폴트 입력값
         self.EditCode.setText("005930")
-        self.EditAcno.setText("27111091101")
+        self.EditAcno.setText("27100000000")
         self.EditPswd.setText("1357")
 
 
