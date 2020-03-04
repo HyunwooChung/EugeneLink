@@ -1,4 +1,4 @@
-# 유진투자증권 챔피언 링크 - 파이썬 샘플소스
+# 유진투자증권 챔피언 링크 API - 파이썬 샘플소스
 유진투자증권 챔피언 링크 API를 이용하여 주문, 조회, 시세 처리를 할 수 있는 기본 샘플소스입니다.
 
 ## :microscope: 개발환경
@@ -25,7 +25,7 @@
 * EugeneWindow.ui
   * 화면 UI (Qt Designer 사용)
 
-## :key: 유의사항
+## :dart: 유의사항
 * 챔피언 링크 설치 폴더에 개발한 프로그램의 exe 파일이 있어야 됨.  
   챔피언 링크 실행 후 설정에서 개발 프로그램의 exe 파일을 등록하면 로그인시 개발 프로그램을 실행시킴.
 * 유진투자증권에서 제공하는 API (OpCodeAPI.dll, OpCommAPI.dll) 2개만 가지고는 실행시 오류 발생.  
@@ -33,9 +33,9 @@
   유진투자증권 챔피언 링크 설치 폴더(C:\EugeneFN\NewChampionLink)에 있는 모든 dll을 개발 폴더에 복사하거나,  
   챔피언 링크 설치폴더에 파이썬 소스파일을 만들어서 실행 해야됨.
 
-## :question: 자주하는 질문
+## :clipboard: 자주하는 질문
 * 이슈 링크 : <https://github.com/HyunwooChung/EugeneLink/issues/1>
   
-## :blue_book: 참조
+## :mortar_board: 참조
 * 해당 소스는 깃허브에 업로드 되어 있습니다.  
   깃허브 링크 : <https://github.com/HyunwooChung/EugeneLink/>
