@@ -38,4 +38,4 @@
   
 ## 참조
 * 해당 소스는 깃허브에 업로드 되어 있습니다.
-* 깃허브 링크 : <https://github.com/HyunwooChung/EugeneLink/>
+  깃허브 링크 : <https://github.com/HyunwooChung/EugeneLink/>
