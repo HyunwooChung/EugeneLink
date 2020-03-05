@@ -80,7 +80,7 @@ class EugeneLib(object):
     OpCodeAPI_GetShCodeByName.restype = c_char_p
     OpCodeAPI_GetShCodeByName.argtypes = [c_char_p]
 
-    # 코드로 종목명을 구하는  함수
+    # 코드로 종목명을 구하는 함수
     OpCodeAPI_GetNameByCode = OpCodeAPI.OpCodeAPI_GetNameByCode
     OpCodeAPI_GetNameByCode.restype = c_char_p
     OpCodeAPI_GetNameByCode.argtypes = [c_char_p]

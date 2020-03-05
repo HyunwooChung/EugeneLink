@@ -164,9 +164,9 @@ class EugeneReal(object):
             self.ui.TablePrc.setItem(i, 2, QTableWidgetItem(sVal))
 
             # 컬럼 정렬 셋팅
-            self.ui.TablePrc.item(i, 0).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
-            self.ui.TablePrc.item(i, 1).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
-            self.ui.TablePrc.item(i, 2).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            self.ui.TablePrc.item(i, 0).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+            self.ui.TablePrc.item(i, 1).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+            self.ui.TablePrc.item(i, 2).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
 
             # 컬럼 색상 셋팅
             self.ui.TablePrc.item(i, 0).setBackground(QtGui.QColor(207, 229, 255))
@@ -183,9 +183,9 @@ class EugeneReal(object):
             self.ui.TablePrc.setItem(i + 5, 4, QTableWidgetItem(sVal))
 
             # 컬럼 정렬 셋팅
-            self.ui.TablePrc.item(i + 5, 2).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
-            self.ui.TablePrc.item(i + 5, 3).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
-            self.ui.TablePrc.item(i + 5, 4).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+            self.ui.TablePrc.item(i + 5, 2).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+            self.ui.TablePrc.item(i + 5, 3).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+            self.ui.TablePrc.item(i + 5, 4).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
 
             # 컬럼 색상 셋팅
             self.ui.TablePrc.item(i + 5, 2).setBackground(QtGui.QColor(255, 221, 207))
@@ -231,8 +231,8 @@ class EugeneReal(object):
             self.ui.TableTick.setItem(0, i, QTableWidgetItem(lstTick[i]))
 
         # 컬럼 정렬 셋팅
-        self.ui.TableTick.item(0, 0).setTextAlignment(Qt.AlignCenter|Qt.AlignVCenter)
-        self.ui.TableTick.item(0, 1).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
-        self.ui.TableTick.item(0, 2).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
-        self.ui.TableTick.item(0, 3).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
-        self.ui.TableTick.item(0, 4).setTextAlignment(Qt.AlignRight|Qt.AlignVCenter)
+        self.ui.TableTick.item(0, 0).setTextAlignment(Qt.AlignVCenter | Qt.AlignCenter)
+        self.ui.TableTick.item(0, 1).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+        self.ui.TableTick.item(0, 2).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+        self.ui.TableTick.item(0, 3).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+        self.ui.TableTick.item(0, 4).setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)

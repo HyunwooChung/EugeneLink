@@ -26,7 +26,7 @@ class EugeneQry(object):
         CLib.OpCommAPI_SetRqData( 6, b"01")      # 체결구분 (01 전체, 02 미체결)
         CLib.OpCommAPI_SetRqData( 7, b"0")       # 조회구분 (0 고정)
 
-        # 조회 데이터 전송
+        # 조회 요청 처리
         iRtn = CLib.OpCommAPI_SendRq(self.ui.winId(), RQRP_TRAN_STK_TRD, 0)
 
         if iRtn < 0:
@@ -123,7 +123,7 @@ class EugeneQry(object):
         CLib.OpCommAPI_SetRqData( 4, b"N")       # 수수료포함여부 (Y 수수료 포함, N 수수료 포함 안함)
         CLib.OpCommAPI_SetRqData( 5, b"N")       # 현재가반영여부 (N 고정)
 
-        # 조회 데이터 전송
+        # 조회 요청 처리
         iRtn = CLib.OpCommAPI_SendRq(self.ui.winId(), RQRP_TRAN_STK_PSTN, 0)
 
         if iRtn < 0:

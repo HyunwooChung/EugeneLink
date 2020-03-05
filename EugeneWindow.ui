@@ -1467,26 +1467,26 @@
   <tabstop>CmbCnd</tabstop>
   <tabstop>BtnBuy</tabstop>
   <tabstop>BtnSell</tabstop>
+  <tabstop>TxtBrErr</tabstop>
+  <tabstop>TxtBrLog</tabstop>
+  <tabstop>tabWidget</tabstop>
   <tabstop>BtnPrc</tabstop>
   <tabstop>BtnTrd</tabstop>
   <tabstop>BtnPstn</tabstop>
+  <tabstop>TxtBrNm</tabstop>
+  <tabstop>TxtBrOrdNo</tabstop>
+  <tabstop>TablePrc</tabstop>
+  <tabstop>TableTick</tabstop>
+  <tabstop>TableTrd</tabstop>
+  <tabstop>TablePstn</tabstop>
   <tabstop>EditCode_2</tabstop>
   <tabstop>EditOOrdNo</tabstop>
   <tabstop>EditPrc_2</tabstop>
   <tabstop>EditQty_2</tabstop>
-  <tabstop>tabWidget</tabstop>
-  <tabstop>TablePrc</tabstop>
-  <tabstop>TxtBrErr</tabstop>
-  <tabstop>TxtBrLog</tabstop>
-  <tabstop>TableTick</tabstop>
-  <tabstop>TableTrd</tabstop>
-  <tabstop>TablePstn</tabstop>
-  <tabstop>TxtBrNm</tabstop>
-  <tabstop>TxtBrOrdNo</tabstop>
-  <tabstop>TxtBrNm_2</tabstop>
   <tabstop>BtnMdfy</tabstop>
-  <tabstop>TxtBrOrdNo_2</tabstop>
   <tabstop>BtnCncl</tabstop>
+  <tabstop>TxtBrNm_2</tabstop>
+  <tabstop>TxtBrOrdNo_2</tabstop>
  </tabstops>
  <resources/>
  <connections/>

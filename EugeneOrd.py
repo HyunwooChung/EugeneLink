@@ -56,7 +56,7 @@ class EugeneOrd(object):
         CLib.OpCommAPI_SetRqData(22, b"N")       # 공매도가능여부 (N 고정)
         CLib.OpCommAPI_SetRqData(23, b"00")      # 공매도구분 (00 고정)
 
-        # 조회 데이터 전송
+        # 주문 전송 처리
         iRtn = CLib.OpCommAPI_SendRq(self.ui.winId(), RQRP_TRAN_STK_ORD, 0)
 
         if iRtn < 0:
@@ -107,7 +107,7 @@ class EugeneOrd(object):
         CLib.OpCommAPI_SetRqData( 9, b"0")       # 주문조건코드 (0:없음, 1:IOC, 2:FOK)
         CLib.OpCommAPI_SetRqData(10, b"0")       # 프로그램호가신고구분 (0 고정)
 
-        # 조회 데이터 전송
+        # 주문 전송 처리
         iRtn = CLib.OpCommAPI_SendRq(self.ui.winId(), RQRP_TRAN_STK_MDFY, 0)
 
         if iRtn < 0:

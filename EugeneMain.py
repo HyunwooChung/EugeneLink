@@ -11,6 +11,9 @@ from EugeneOrd import *
 from EugeneQry import *
 from EugeneReal import *
 
+# 실행파일과 동일한 폴더에 ui 파일을 복사할 것
+# 바로가기로 실행하면 프로그램 경로를 가져올 수 없는 경우가 있어서 절대경로로 입력
+# uidir = os.path.dirname(os.path.realpath(__file__))
 ui = uic.loadUiType("C:\\EugeneFN\\NewChampionLink\\EugeneWindow.ui")[0]
 
 class MyWindow(QMainWindow, ui):
@@ -18,14 +21,14 @@ class MyWindow(QMainWindow, ui):
         super().__init__()
         self.setupUi(self)
 
-        # 윈도우 이벤트 수신처리
-        self.WindowEvent(self.winId())
+        # 윈도우 컨트롤 셋팅
+        self.SetControl()
 
         # 윈도우폼 셋팅
         self.SetWindowForm()
 
-        # 윈도우 컨트롤 셋팅
-        self.SetControl()
+        # 윈도우 이벤트 수신처리
+        self.WindowEvent(self.winId())
 
         # 실시간 시세 인스턴스 생성
         self.CReal = EugeneReal(self)
@@ -44,10 +47,18 @@ class MyWindow(QMainWindow, ui):
         else:
             self.TxtBrLog.append("서버접속 : 성공")
 
-        # 디폴트 입력값
-        self.EditCode.setText("005930")
-        self.EditAcno.setText("27100000000")
-        self.EditPswd.setText("1357")
+
+    # 윈도우 컨트롤 셋팅
+    def SetControl(self):
+        self.BtnTrd.clicked.connect(self.BtnTrdClick)
+        self.BtnPstn.clicked.connect(self.BtnPstnClick)
+        self.BtnPrc.clicked.connect(self.BtnPrcClick)
+        self.BtnBuy.clicked.connect(self.BtnBuyClick)
+        self.BtnSell.clicked.connect(self.BtnSellClick)
+        self.BtnMdfy.clicked.connect(self.BtnMdfyClick)
+        self.BtnCncl.clicked.connect(self.BtnCnclClick)
+        self.EditCode.textChanged.connect(self.EditCodeChanged)
+        self.CmbBns.currentIndexChanged.connect(self.CmbBnsChanged)
 
 
     # 윈도우 form 셋팅
@@ -94,18 +105,10 @@ class MyWindow(QMainWindow, ui):
         # 비밀번호 **** 마스킹 처리
         self.EditPswd.setEchoMode(QLineEdit.Password)
 
-
-    # 윈도우 컨트롤 셋팅
-    def SetControl(self):
-        self.BtnTrd.clicked.connect(self.BtnTrdClick)
-        self.BtnPstn.clicked.connect(self.BtnPstnClick)
-        self.BtnPrc.clicked.connect(self.BtnPrcClick)
-        self.BtnBuy.clicked.connect(self.BtnBuyClick)
-        self.BtnSell.clicked.connect(self.BtnSellClick)
-        self.BtnMdfy.clicked.connect(self.BtnMdfyClick)
-        self.BtnCncl.clicked.connect(self.BtnCnclClick)
-        self.EditCode.textChanged.connect(self.EditCodeChanged)
-        self.CmbBns.currentIndexChanged.connect(self.CmbBnsChanged)
+        # 디폴트 입력값
+        self.EditCode.setText("005930")        # 종목코드
+        self.EditAcno.setText("27100000000")   # 계좌번호
+        self.EditPswd.setText("1357")          # 비밀번호
 
 
     # 유진투자증권 API 윈도우 이벤트 수신처리
