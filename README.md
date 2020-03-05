@@ -35,7 +35,3 @@
 
 ## :clipboard: 자주하는 질문
 * 이슈 링크 : <https://github.com/HyunwooChung/EugeneLink/issues/1>
-  
-## :mortar_board: 참조
-* 해당 소스는 깃허브에 업로드 되어 있습니다.  
-  깃허브 링크 : <https://github.com/HyunwooChung/EugeneLink/>
